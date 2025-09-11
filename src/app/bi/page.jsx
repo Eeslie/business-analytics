@@ -31,13 +31,6 @@ const tiles = [
     accent: "from-green-200/70 to-green-100/40",
     icon: "🔐",
   },
-  {
-    href: "/bi/tal",
-    title: "Time, Attendance & Leave",
-    desc: "Clock in/out, manage leave, approvals, accruals, and payroll-ready reports.",
-    accent: "from-green-200/70 to-green-100/40",
-    icon: "🕒",
-  },
 ];
 
 export default function BiHomePage() {
