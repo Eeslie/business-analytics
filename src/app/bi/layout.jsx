@@ -27,6 +27,9 @@ export default function BiLayout({ children }) {
               <li>
                 <Link className="hover:underline" href="/bi/access">Access & Security</Link>
               </li>
+              <li>
+                <Link className="hover:underline" href="/bi/tal">Time & Leave</Link>
+              </li>
             </ul>
           </nav>
         </div>
