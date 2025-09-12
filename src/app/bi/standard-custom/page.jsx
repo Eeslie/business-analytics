@@ -63,147 +63,313 @@ export default function StandardCustomReportsPage() {
   }
 
   return (
-    <section className="space-y-8">
-      <header>
-        <h2 className="text-2xl font-bold text-orange-900">Standard and Custom Report Generation</h2>
-        <p className="text-black/80 mt-1 max-w-3xl">
-          Generates built-in reports across all modules with options to customize layout and filters. Run, export, or schedule reports.
+    <div className="space-y-8">
+      {/* Header */}
+      <div className="text-center space-y-4">
+        <div className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-50 border border-blue-200 rounded-full text-sm font-medium text-blue-700">
+          <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+          <span>Report Generation</span>
+        </div>
+        
+        <h1 className="text-4xl font-bold tracking-tight">
+          <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+            Standard & Custom Reports
+          </span>
+        </h1>
+        
+        <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+          Generate built-in reports across all modules with customizable layouts, filters, and scheduling options.
         </p>
-      </header>
+      </div>
 
-      <div className="grid lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-6">
-          <div className="rounded-lg border border-black/10 p-5">
-            <h3 className="text-lg font-semibold text-green-900">Predefined Reports</h3>
-            <div className="mt-3 grid sm:grid-cols-3 gap-3">
-              {PREDEFINED_REPORTS.map((r) => (
+      <div className="grid lg:grid-cols-3 gap-8">
+        {/* Main Content */}
+        <div className="lg:col-span-2 space-y-8">
+          {/* Report Selection */}
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                <span className="text-white text-lg">📊</span>
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900">Predefined Reports</h2>
+            </div>
+            
+            <div className="grid sm:grid-cols-3 gap-4">
+              {PREDEFINED_REPORTS.map((report) => (
                 <button
-                  key={r.id}
-                  onClick={() => setSelectedReportId(r.id)}
-                  className={`text-left rounded-md border px-3 py-2 transition-colors ${
-                    selectedReportId === r.id
-                      ? "border-green-900 text-green-900 bg-black/[.03]"
-                      : "border-black/10 hover:bg-black/[.03]"
+                  key={report.id}
+                  onClick={() => setSelectedReportId(report.id)}
+                  className={`group relative p-6 rounded-xl border-2 transition-all duration-200 text-left ${
+                    selectedReportId === report.id
+                      ? "border-blue-500 bg-blue-50 shadow-md"
+                      : "border-slate-200 hover:border-blue-300 hover:bg-slate-50"
                   }`}
                 >
-                  {r.name}
+                  <div className="flex items-center space-x-3">
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                      selectedReportId === report.id 
+                        ? "bg-blue-500 text-white" 
+                        : "bg-slate-100 text-slate-600 group-hover:bg-blue-100 group-hover:text-blue-600"
+                    }`}>
+                      {selectedReportId === report.id ? "✓" : "○"}
+                    </div>
+                    <span className={`font-medium ${
+                      selectedReportId === report.id ? "text-blue-900" : "text-slate-700"
+                    }`}>
+                      {report.name}
+                    </span>
+                  </div>
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="rounded-lg border border-black/10 p-5">
-            <h3 className="text-lg font-semibold text-green-900">Customize Filters</h3>
-            <div className="mt-4 grid sm:grid-cols-2 gap-4">
-              <label className="flex flex-col gap-1">
-                <span className="text-sm text-black/70">Date from</span>
-                <input type="date" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} className="rounded-md border border-black/15 px-3 py-2" />
-              </label>
-              <label className="flex flex-col gap-1">
-                <span className="text-sm text-black/70">Date to</span>
-                <input type="date" value={dateTo} onChange={(e) => setDateTo(e.target.value)} className="rounded-md border border-black/15 px-3 py-2" />
-              </label>
-              <label className="flex flex-col gap-1">
-                <span className="text-sm text-black/70">Department</span>
-                <select value={department} onChange={(e) => setDepartment(e.target.value)} className="rounded-md border border-black/15 px-3 py-2">
-                  {DEPARTMENTS.map((d) => (
-                    <option key={d} value={d}>{d}</option>
-                  ))}
-                </select>
-              </label>
-              <label className="flex flex-col gap-1">
-                <span className="text-sm text-black/70">Region</span>
-                <select value={region} onChange={(e) => setRegion(e.target.value)} className="rounded-md border border-black/15 px-3 py-2">
-                  {REGIONS.map((r) => (
-                    <option key={r} value={r}>{r}</option>
-                  ))}
-                </select>
-              </label>
+          {/* Filters */}
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center">
+                <span className="text-white text-lg">⚙️</span>
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900">Customize Filters</h2>
             </div>
 
-            <div className="mt-4">
-              <div className="text-sm text-black/70 mb-2">Columns</div>
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-slate-700">Date Range</label>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <input
+                      type="date"
+                      value={dateFrom}
+                      onChange={(e) => setDateFrom(e.target.value)}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      placeholder="From"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="date"
+                      value={dateTo}
+                      onChange={(e) => setDateTo(e.target.value)}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      placeholder="To"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-slate-700">Scope</label>
+                <div className="grid grid-cols-2 gap-3">
+                  <select
+                    value={department}
+                    onChange={(e) => setDepartment(e.target.value)}
+                    className="px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  >
+                    {DEPARTMENTS.map((d) => (
+                      <option key={d} value={d}>{d}</option>
+                    ))}
+                  </select>
+                  <select
+                    value={region}
+                    onChange={(e) => setRegion(e.target.value)}
+                    className="px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  >
+                    {REGIONS.map((r) => (
+                      <option key={r} value={r}>{r}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <label className="block text-sm font-medium text-slate-700 mb-3">Include Columns</label>
               <div className="flex flex-wrap gap-4">
                 {Object.keys(includeColumns).map((key) => (
-                  <label key={key} className="inline-flex items-center gap-2">
+                  <label key={key} className="flex items-center space-x-2 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={includeColumns[key]}
                       onChange={(e) => setIncludeColumns({ ...includeColumns, [key]: e.target.checked })}
+                      className="w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500"
                     />
-                    <span className="capitalize">{key}</span>
+                    <span className="text-sm font-medium text-slate-700 capitalize">{key}</span>
                   </label>
                 ))}
               </div>
             </div>
 
-            <div className="mt-5">
-              <button onClick={runReport} className="rounded-md border border-black/10 bg-white px-4 py-2 text-green-900 hover:bg-black/[.03]">
-                Run report
+            <div className="mt-8">
+              <button
+                onClick={runReport}
+                className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md"
+              >
+                <span>🚀</span>
+                <span>Generate Report</span>
               </button>
             </div>
           </div>
 
-          <div className="rounded-lg border border-black/10 p-5">
-            <h3 className="text-lg font-semibold text-green-900">Results</h3>
+          {/* Results */}
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                <span className="text-white text-lg">📈</span>
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900">Report Results</h2>
+            </div>
+
             {runResult ? (
-              <div className="mt-3 text-sm text-black/80">
-                <div><span className="font-semibold">Report:</span> {selectedReportName}</div>
-                <div className="grid sm:grid-cols-2 gap-x-4">
-                  <div><span className="font-semibold">Date from:</span> {runResult.dateFrom || "(not set)"}</div>
-                  <div><span className="font-semibold">Date to:</span> {runResult.dateTo || "(not set)"}</div>
-                  <div><span className="font-semibold">Department:</span> {runResult.department}</div>
-                  <div><span className="font-semibold">Region:</span> {runResult.region}</div>
-                  <div className="sm:col-span-2"><span className="font-semibold">Columns:</span> {runResult.columns.join(", ")}</div>
+              <div className="bg-slate-50 rounded-xl p-6 space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-slate-900">{selectedReportName}</h3>
+                  <span className="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
+                    Generated
+                  </span>
                 </div>
-                <div className="mt-3 text-black/60">Generated at {new Date(runResult.generatedAt).toLocaleString()}</div>
+                
+                <div className="grid sm:grid-cols-2 gap-4 text-sm">
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <span className="text-slate-600">Date Range:</span>
+                      <span className="font-medium text-slate-900">
+                        {runResult.dateFrom || "Not set"} - {runResult.dateTo || "Not set"}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-slate-600">Department:</span>
+                      <span className="font-medium text-slate-900">{runResult.department}</span>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <span className="text-slate-600">Region:</span>
+                      <span className="font-medium text-slate-900">{runResult.region}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-slate-600">Columns:</span>
+                      <span className="font-medium text-slate-900">{runResult.columns.length}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="pt-4 border-t border-slate-200">
+                  <div className="flex items-center justify-between text-sm text-slate-500">
+                    <span>Generated at {new Date(runResult.generatedAt).toLocaleString()}</span>
+                    <span className="text-xs bg-slate-200 px-2 py-1 rounded">
+                      {runResult.columns.join(", ")}
+                    </span>
+                  </div>
+                </div>
               </div>
             ) : (
-              <p className="mt-3 text-black/60">Run a report to see a preview of parameters used.</p>
+              <div className="text-center py-12">
+                <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl text-slate-400">📊</span>
+                </div>
+                <p className="text-slate-500">Generate a report to see results and parameters</p>
+              </div>
             )}
           </div>
         </div>
 
-        <div className="space-y-6">
-          <div className="rounded-lg border border-black/10 p-5">
-            <h3 className="text-lg font-semibold text-green-900">Export</h3>
-            <p className="text-black/70 mt-1">Choose a format to download.</p>
-            <div className="mt-4 flex flex-wrap gap-3">
-              <button disabled={exporting} onClick={() => handleExport("pdf")} className="rounded-md border border-black/10 bg-white px-4 py-2 text-orange-900 hover:bg-black/[.03] disabled:opacity-60">PDF</button>
-              <button disabled={exporting} onClick={() => handleExport("xlsx")} className="rounded-md border border-black/10 bg-white px-4 py-2 text-orange-900 hover:bg-black/[.03] disabled:opacity-60">Excel</button>
-              <button disabled={exporting} onClick={() => handleExport("csv")} className="rounded-md border border-black/10 bg-white px-4 py-2 text-orange-900 hover:bg-black/[.03] disabled:opacity-60">CSV</button>
+        {/* Sidebar */}
+        <div className="space-y-8">
+          {/* Export */}
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+                <span className="text-white text-sm">📥</span>
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900">Export</h3>
+            </div>
+            
+            <p className="text-slate-600 text-sm mb-4">Choose a format to download your report</p>
+            
+            <div className="space-y-3">
+              {[
+                { format: "pdf", label: "PDF", icon: "📄", color: "from-red-500 to-pink-500" },
+                { format: "xlsx", label: "Excel", icon: "📊", color: "from-green-500 to-emerald-500" },
+                { format: "csv", label: "CSV", icon: "📋", color: "from-blue-500 to-cyan-500" },
+              ].map(({ format, label, icon, color }) => (
+                <button
+                  key={format}
+                  disabled={exporting}
+                  onClick={() => handleExport(format)}
+                  className="w-full flex items-center space-x-3 p-3 rounded-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                >
+                  <div className={`w-8 h-8 bg-gradient-to-br ${color} rounded-lg flex items-center justify-center`}>
+                    <span className="text-white text-sm">{icon}</span>
+                  </div>
+                  <span className="font-medium text-slate-700">{label}</span>
+                  {exporting && <div className="ml-auto w-4 h-4 border-2 border-slate-300 border-t-blue-600 rounded-full animate-spin"></div>}
+                </button>
+              ))}
             </div>
           </div>
 
-          <div className="rounded-lg border border-black/10 p-5">
-            <h3 className="text-lg font-semibold text-green-900">Schedule</h3>
-            <div className="mt-4 grid gap-4">
-              <label className="flex flex-col gap-1">
-                <span className="text-sm text-black/70">Frequency</span>
-                <select value={schedule.frequency} onChange={(e) => setSchedule({ ...schedule, frequency: e.target.value })} className="rounded-md border border-black/15 px-3 py-2">
+          {/* Schedule */}
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-lg flex items-center justify-center">
+                <span className="text-white text-sm">⏰</span>
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900">Schedule</h3>
+            </div>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-2">Frequency</label>
+                <select
+                  value={schedule.frequency}
+                  onChange={(e) => setSchedule({ ...schedule, frequency: e.target.value })}
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                >
                   <option value="daily">Daily</option>
                   <option value="weekly">Weekly</option>
                   <option value="monthly">Monthly</option>
                 </select>
-              </label>
-              <label className="flex flex-col gap-1">
-                <span className="text-sm text-black/70">Time</span>
-                <input type="time" value={schedule.time} onChange={(e) => setSchedule({ ...schedule, time: e.target.value })} className="rounded-md border border-black/15 px-3 py-2" />
-              </label>
-              <label className="flex flex-col gap-1">
-                <span className="text-sm text-black/70">Send to email</span>
-                <input type="email" placeholder="name@example.com" value={schedule.email} onChange={(e) => setSchedule({ ...schedule, email: e.target.value })} className="rounded-md border border-black/15 px-3 py-2" />
-              </label>
-              <div>
-                <button onClick={saveSchedule} className="rounded-md border border-black/10 bg-white px-4 py-2 text-green-900 hover:bg-black/[.03]">Save schedule</button>
-                {scheduleSaved && <span className="ml-3 text-sm text-green-900">Saved</span>}
               </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-2">Time</label>
+                <input
+                  type="time"
+                  value={schedule.time}
+                  onChange={(e) => setSchedule({ ...schedule, time: e.target.value })}
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
+                <input
+                  type="email"
+                  placeholder="name@example.com"
+                  value={schedule.email}
+                  onChange={(e) => setSchedule({ ...schedule, email: e.target.value })}
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                />
+              </div>
+              
+              <button
+                onClick={saveSchedule}
+                className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium rounded-lg hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200"
+              >
+                <span>💾</span>
+                <span>Save Schedule</span>
+                {scheduleSaved && <span className="text-green-300">✓</span>}
+              </button>
             </div>
-            <p className="mt-3 text-sm text-black/60">Reports will be generated with the selected filters and delivered to the configured email.</p>
+            
+            <p className="mt-4 text-xs text-slate-500">
+              Reports will be generated with selected filters and delivered to the configured email.
+            </p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 

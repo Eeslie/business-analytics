@@ -66,137 +66,318 @@ export default function ComplianceReportsPage() {
   }, [historyFilter]);
 
   return (
-    <section className="space-y-8">
-      <header>
-        <h2 className="text-2xl font-bold text-orange-900">Compliance and Regulatory Reporting</h2>
-        <p className="text-black/80 mt-1 max-w-3xl">
-          Supports the generation of government/industry reports with audit trails, compliant formats, and a searchable historical archive.
+    <div className="space-y-8">
+      {/* Header */}
+      <div className="text-center space-y-4">
+        <div className="inline-flex items-center space-x-2 px-4 py-2 bg-amber-50 border border-amber-200 rounded-full text-sm font-medium text-amber-700">
+          <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+          <span>Compliance & Regulatory</span>
+        </div>
+        
+        <h1 className="text-4xl font-bold tracking-tight">
+          <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+            Compliance & Regulatory Reporting
+          </span>
+        </h1>
+        
+        <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+          Generate government and industry reports with audit trails, compliant formats, and searchable historical archive.
         </p>
-      </header>
+      </div>
 
-      <div className="grid lg:grid-cols-3 gap-6">
-        {/* Builder & Validation */}
-        <div className="lg:col-span-2 space-y-6">
-          <div className="rounded-lg border border-black/10 p-5">
-            <h3 className="text-lg font-semibold text-green-900">Format Templates</h3>
-            <div className="mt-4 grid sm:grid-cols-2 gap-4">
-              <label className="flex flex-col gap-1">
-                <span className="text-sm text-black/70">Template</span>
-                <select value={templateId} onChange={(e) => setTemplateId(e.target.value)} className="rounded-md border border-black/15 px-3 py-2">
+      <div className="grid lg:grid-cols-3 gap-8">
+        {/* Main Content */}
+        <div className="lg:col-span-2 space-y-8">
+          {/* Template Builder */}
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center">
+                <span className="text-white text-lg">📋</span>
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900">Format Templates</h2>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-2">Template</label>
+                <select
+                  value={templateId}
+                  onChange={(e) => setTemplateId(e.target.value)}
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
+                >
                   {TEMPLATES.map((t) => (
                     <option key={t.id} value={t.id}>{t.name}</option>
                   ))}
                 </select>
-              </label>
-              <label className="flex flex-col gap-1">
-                <span className="text-sm text-black/70">Company</span>
-                <input value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Acme Holdings Ltd" className="rounded-md border border-black/15 px-3 py-2" />
-              </label>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-2">Company</label>
+                <input
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  placeholder="Acme Holdings Ltd"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
+                />
+              </div>
 
               {templateId !== "vat-quarterly" && (
-                <label className="flex flex-col gap-1">
-                  <span className="text-sm text-black/70">Period</span>
-                  <input value={period} onChange={(e) => setPeriod(e.target.value)} placeholder="FY 2024 or Jan 2025" className="rounded-md border border-black/15 px-3 py-2" />
-                </label>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Period</label>
+                  <input
+                    value={period}
+                    onChange={(e) => setPeriod(e.target.value)}
+                    placeholder="FY 2024 or Jan 2025"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
+                  />
+                </div>
               )}
 
               {templateId === "vat-quarterly" && (
                 <>
-                  <label className="flex flex-col gap-1">
-                    <span className="text-sm text-black/70">Quarter</span>
-                    <select value={quarter} onChange={(e) => setQuarter(e.target.value)} className="rounded-md border border-black/15 px-3 py-2">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Quarter</label>
+                    <select
+                      value={quarter}
+                      onChange={(e) => setQuarter(e.target.value)}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
+                    >
                       <option>Q1</option>
                       <option>Q2</option>
                       <option>Q3</option>
                       <option>Q4</option>
                     </select>
-                  </label>
-                  <label className="flex flex-col gap-1">
-                    <span className="text-sm text-black/70">Year</span>
-                    <input value={year} onChange={(e) => setYear(e.target.value)} className="rounded-md border border-black/15 px-3 py-2" />
-                  </label>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Year</label>
+                    <input
+                      value={year}
+                      onChange={(e) => setYear(e.target.value)}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
+                    />
+                  </div>
                 </>
               )}
             </div>
 
-            <div className="mt-4 rounded-md border border-black/10 bg-white p-3 text-sm">
-              <div className="font-medium">
-                Validation: {validation.ok ? (
-                  <span className="text-green-900">OK – meets required fields</span>
-                ) : (
-                  <span className="text-orange-900">Missing {validation.missing.join(", ")}</span>
-                )}
+            {/* Validation Status */}
+            <div className="mt-6 p-4 rounded-xl border-2 border-dashed">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-semibold text-slate-700">Validation Status</h3>
+                <div className={`px-3 py-1 rounded-full text-xs font-medium ${
+                  validation.ok 
+                    ? 'bg-green-100 text-green-800 border border-green-200' 
+                    : 'bg-red-100 text-red-800 border border-red-200'
+                }`}>
+                  {validation.ok ? '✓ Valid' : '✗ Invalid'}
+                </div>
               </div>
-              <p className="text-black/70 mt-1">Ensures format compliance with local/legal standards before export.</p>
+              <p className="text-sm text-slate-600">
+                {validation.ok 
+                  ? 'All required fields are completed and meet compliance standards.'
+                  : `Missing required fields: ${validation.missing.join(", ")}`
+                }
+              </p>
             </div>
 
-            <div className="mt-4 flex flex-wrap gap-3">
-              <button onClick={generateAuditTrail} className="rounded-md border border-black/10 bg-white px-4 py-2 text-green-900 hover:bg-black/[.03]">Create audit trail</button>
-              <button disabled={!validation.ok} onClick={() => exportReport("pdf")} className="rounded-md border border-black/10 bg-white px-4 py-2 text-orange-900 hover:bg-black/[.03] disabled:opacity-60">Export PDF</button>
-              <button disabled={!validation.ok} onClick={() => exportReport("xlsx")} className="rounded-md border border-black/10 bg-white px-4 py-2 text-orange-900 hover:bg-black/[.03] disabled:opacity-60">Export Excel</button>
+            {/* Actions */}
+            <div className="mt-6 flex flex-wrap gap-3">
+              <button
+                onClick={generateAuditTrail}
+                className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-medium rounded-lg hover:from-green-700 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200"
+              >
+                <span>📝</span>
+                <span>Create Audit Trail</span>
+              </button>
+              
+              <button
+                disabled={!validation.ok || exporting}
+                onClick={() => exportReport("pdf")}
+                className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white font-medium rounded-lg hover:from-amber-700 hover:to-orange-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {exporting ? (
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                ) : (
+                  <span>📄</span>
+                )}
+                <span>Export PDF</span>
+              </button>
+              
+              <button
+                disabled={!validation.ok || exporting}
+                onClick={() => exportReport("xlsx")}
+                className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {exporting ? (
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                ) : (
+                  <span>📊</span>
+                )}
+                <span>Export Excel</span>
+              </button>
             </div>
           </div>
 
-          <div className="rounded-lg border border-black/10 p-5">
-            <h3 className="text-lg font-semibold text-green-900">Audit Trail</h3>
-            <ul className="mt-3 space-y-2">
-              {auditEvents.length === 0 && (
-                <li className="text-sm text-black/60">No audit entries yet. Generate an audit trail after building a report.</li>
+          {/* Audit Trail */}
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-xl flex items-center justify-center">
+                <span className="text-white text-lg">🔍</span>
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900">Audit Trail</h2>
+            </div>
+            
+            <div className="space-y-3 max-h-80 overflow-y-auto">
+              {auditEvents.length === 0 ? (
+                <div className="text-center py-8">
+                  <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-slate-400 text-2xl">📝</span>
+                  </div>
+                  <p className="text-slate-500">No audit entries yet</p>
+                  <p className="text-sm text-slate-400 mt-1">Generate an audit trail after building a report</p>
+                </div>
+              ) : (
+                auditEvents.map((event) => (
+                  <div key={event.id} className="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                        <span className="text-sm font-medium text-slate-700">{event.message}</span>
+                      </div>
+                      <span className="text-xs text-slate-500">{event.at}</span>
+                    </div>
+                  </div>
+                ))
               )}
-              {auditEvents.map((e) => (
-                <li key={e.id} className="rounded-md border border-black/10 bg-white px-3 py-2 text-sm flex items-center justify-between">
-                  <span className="text-black/80">{e.message}</span>
-                  <span className="text-black/40">{e.at}</span>
-                </li>
-              ))}
-            </ul>
+            </div>
           </div>
         </div>
 
-        {/* Historical Archive */}
-        <div className="space-y-6">
-          <div className="rounded-lg border border-black/10 p-5">
-            <h3 className="text-lg font-semibold text-green-900">Historical Reports</h3>
-            <div className="mt-3">
+        {/* Sidebar */}
+        <div className="space-y-8">
+          {/* Historical Reports */}
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="w-8 h-8 bg-gradient-to-br from-slate-500 to-slate-600 rounded-lg flex items-center justify-center">
+                <span className="text-white text-sm">📚</span>
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900">Historical Reports</h3>
+            </div>
+            
+            <div className="mb-4">
               <input
                 value={historyFilter}
                 onChange={(e) => setHistoryFilter(e.target.value)}
                 placeholder="Search by ID, template, period, status"
-                className="w-full rounded-md border border-black/15 px-3 py-2"
+                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all text-sm"
               />
             </div>
-            <div className="mt-3 overflow-x-auto">
+            
+            <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="text-left text-black/60">
-                    <th className="py-2 pr-3">ID</th>
-                    <th className="py-2 pr-3">Template</th>
-                    <th className="py-2 pr-3">Period</th>
-                    <th className="py-2 pr-3">Created</th>
-                    <th className="py-2 pr-3">Status</th>
+                  <tr className="text-left text-slate-600 border-b border-slate-200">
+                    <th className="py-3 pr-3 font-medium">ID</th>
+                    <th className="py-3 pr-3 font-medium">Template</th>
+                    <th className="py-3 pr-3 font-medium">Period</th>
+                    <th className="py-3 pr-3 font-medium">Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredHistory.map((h) => (
-                    <tr key={h.id} className="border-t border-black/10">
-                      <td className="py-2 pr-3 font-medium text-green-900">{h.id}</td>
-                      <td className="py-2 pr-3">{h.template}</td>
-                      <td className="py-2 pr-3">{h.period}</td>
-                      <td className="py-2 pr-3">{h.created}</td>
-                      <td className="py-2 pr-3">{h.status}</td>
+                    <tr key={h.id} className="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+                      <td className="py-3 pr-3 font-medium text-amber-600">{h.id}</td>
+                      <td className="py-3 pr-3 text-slate-700">{h.template}</td>
+                      <td className="py-3 pr-3 text-slate-600">{h.period}</td>
+                      <td className="py-3 pr-3">
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                          h.status === 'Filed' ? 'bg-green-100 text-green-800' :
+                          h.status === 'Approved' ? 'bg-blue-100 text-blue-800' :
+                          'bg-slate-100 text-slate-800'
+                        }`}>
+                          {h.status}
+                        </span>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <div className="mt-3 flex gap-3">
-              <button onClick={() => exportReport("pdf")} disabled={exporting} className="rounded-md border border-black/10 bg-white px-3 py-2 text-orange-900 hover:bg-black/[.03] disabled:opacity-60">Export selected</button>
-              <button onClick={() => alert("Retention policy: 7 years (example)")} className="rounded-md border border-black/10 bg-white px-3 py-2 text-green-900 hover:bg-black/[.03]">View retention policy</button>
+            
+            <div className="mt-4 flex gap-3">
+              <button
+                onClick={() => exportReport("pdf")}
+                disabled={exporting}
+                className="flex-1 inline-flex items-center justify-center space-x-2 px-3 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white font-medium rounded-lg hover:from-amber-700 hover:to-orange-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+              >
+                <span>📥</span>
+                <span>Export Selected</span>
+              </button>
+              
+              <button
+                onClick={() => alert("Retention policy: 7 years (example)")}
+                className="flex-1 inline-flex items-center justify-center space-x-2 px-3 py-2 bg-gradient-to-r from-slate-600 to-slate-700 text-white font-medium rounded-lg hover:from-slate-700 hover:to-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 transition-all duration-200 text-sm"
+              >
+                <span>📋</span>
+                <span>Retention Policy</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Compliance Features */}
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                <span className="text-white text-sm">🛡️</span>
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900">Compliance Features</h3>
+            </div>
+            
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-green-600 text-xs">✓</span>
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium text-slate-700">Audit Trails</h4>
+                  <p className="text-xs text-slate-500">Immutable and time-stamped entries</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-3">
+                <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-green-600 text-xs">✓</span>
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium text-slate-700">Regulatory Templates</h4>
+                  <p className="text-xs text-slate-500">Pre-built compliance formats</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-3">
+                <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-green-600 text-xs">✓</span>
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium text-slate-700">Historical Archive</h4>
+                  <p className="text-xs text-slate-500">Searchable report history</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-3">
+                <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-green-600 text-xs">✓</span>
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium text-slate-700">Validation</h4>
+                  <p className="text-xs text-slate-500">Format compliance checking</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
