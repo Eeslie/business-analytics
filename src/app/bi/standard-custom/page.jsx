@@ -11,6 +11,9 @@ const PREDEFINED_REPORTS = [
 const DEPARTMENTS = ["All", "Sales", "Operations", "Finance", "HR"];
 const REGIONS = ["All", "North", "South", "East", "West"];
 
+// Simple hardcoded API URL - no environment variables needed
+const API_BASE_URL = "http://localhost:3001";
+
 export default function StandardCustomReportsPage() {
   const [selectedReportId, setSelectedReportId] = useState("sales-summary");
   const [dateFrom, setDateFrom] = useState("");
@@ -25,6 +28,8 @@ export default function StandardCustomReportsPage() {
 
   const [runResult, setRunResult] = useState(null);
   const [exporting, setExporting] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const [schedule, setSchedule] = useState({
     frequency: "daily",
@@ -37,17 +42,58 @@ export default function StandardCustomReportsPage() {
     return PREDEFINED_REPORTS.find((r) => r.id === selectedReportId)?.name ?? "";
   }, [selectedReportId]);
 
-  function runReport() {
-    const payload = {
-      reportId: selectedReportId,
-      dateFrom,
-      dateTo,
-      department,
-      region,
-      columns: Object.keys(includeColumns).filter((k) => includeColumns[k]),
-      generatedAt: new Date().toISOString(),
-    };
-    setRunResult(payload);
+  async function runReport() {
+    if (selectedReportId === "inventory-stock") {
+      setLoading(true);
+      setError(null);
+
+      const params = new URLSearchParams({
+        dateFrom: dateFrom || "",
+        dateTo: dateTo || "",
+        department: department || "All",
+        region: region || "All",
+      }).toString();
+
+      try {
+        console.log("Fetching from:", `${API_BASE_URL}/api/inventory-stocks?${params}`);
+        
+        const response = await fetch(`${API_BASE_URL}/api/inventory-stocks?${params}`);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log("Received data:", data);
+
+        setRunResult({
+          reportId: selectedReportId,
+          dateFrom,
+          dateTo,
+          department,
+          region,
+          columns: Object.keys(includeColumns).filter((k) => includeColumns[k]),
+          generatedAt: new Date().toISOString(),
+          rows: data,
+        });
+      } catch (error) {
+        console.error("Fetch error:", error);
+        setError(`Failed to fetch inventory stocks: ${error.message}`);
+        alert(`Failed to fetch inventory stocks report: ${error.message}\n\nMake sure your backend is running on port 3001`);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      setRunResult({
+        reportId: selectedReportId,
+        dateFrom,
+        dateTo,
+        department,
+        region,
+        columns: Object.keys(includeColumns).filter((k) => includeColumns[k]),
+        generatedAt: new Date().toISOString(),
+      });
+    }
   }
 
   async function handleExport(kind) {
@@ -70,17 +116,25 @@ export default function StandardCustomReportsPage() {
           <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
           <span>Report Generation</span>
         </div>
-        
+
         <h1 className="text-4xl font-bold tracking-tight">
           <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
             Standard & Custom Reports
           </span>
         </h1>
-        
+
         <p className="text-xl text-slate-600 max-w-3xl mx-auto">
           Generate built-in reports across all modules with customizable layouts, filters, and scheduling options.
         </p>
       </div>
+
+      {/* Error Display */}
+      {error && (
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-800">
+          <strong>Error:</strong> {error}
+          <p className="text-sm mt-2">Make sure your backend server is running on port 3001</p>
+        </div>
+      )}
 
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Main Content */}
@@ -93,7 +147,7 @@ export default function StandardCustomReportsPage() {
               </div>
               <h2 className="text-2xl font-bold text-slate-900">Predefined Reports</h2>
             </div>
-            
+
             <div className="grid sm:grid-cols-3 gap-4">
               {PREDEFINED_REPORTS.map((report) => (
                 <button
@@ -106,16 +160,20 @@ export default function StandardCustomReportsPage() {
                   }`}
                 >
                   <div className="flex items-center space-x-3">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                      selectedReportId === report.id 
-                        ? "bg-blue-500 text-white" 
-                        : "bg-slate-100 text-slate-600 group-hover:bg-blue-100 group-hover:text-blue-600"
-                    }`}>
+                    <div
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                        selectedReportId === report.id
+                          ? "bg-blue-500 text-white"
+                          : "bg-slate-100 text-slate-600 group-hover:bg-blue-100 group-hover:text-blue-600"
+                      }`}
+                    >
                       {selectedReportId === report.id ? "✓" : "○"}
                     </div>
-                    <span className={`font-medium ${
-                      selectedReportId === report.id ? "text-blue-900" : "text-slate-700"
-                    }`}>
+                    <span
+                      className={`font-medium ${
+                        selectedReportId === report.id ? "text-blue-900" : "text-slate-700"
+                      }`}
+                    >
                       {report.name}
                     </span>
                   </div>
@@ -167,7 +225,9 @@ export default function StandardCustomReportsPage() {
                     className="px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   >
                     {DEPARTMENTS.map((d) => (
-                      <option key={d} value={d}>{d}</option>
+                      <option key={d} value={d}>
+                        {d}
+                      </option>
                     ))}
                   </select>
                   <select
@@ -176,7 +236,9 @@ export default function StandardCustomReportsPage() {
                     className="px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   >
                     {REGIONS.map((r) => (
-                      <option key={r} value={r}>{r}</option>
+                      <option key={r} value={r}>
+                        {r}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -203,10 +265,20 @@ export default function StandardCustomReportsPage() {
             <div className="mt-8">
               <button
                 onClick={runReport}
-                className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md"
+                disabled={loading}
+                className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <span>🚀</span>
-                <span>Generate Report</span>
+                {loading ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Loading...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>🚀</span>
+                    <span>Generate Report</span>
+                  </>
+                )}
               </button>
             </div>
           </div>
@@ -220,7 +292,37 @@ export default function StandardCustomReportsPage() {
               <h2 className="text-2xl font-bold text-slate-900">Report Results</h2>
             </div>
 
-            {runResult ? (
+            {runResult && runResult.reportId === "inventory-stock" && runResult.rows ? (
+              <div className="overflow-x-auto rounded-lg border border-slate-200 mt-4">
+                <table className="min-w-full divide-y divide-slate-200">
+                  <thead className="bg-slate-100">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Item Name</th>
+                      <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Category</th>
+                      <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Quantity</th>
+                      <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Unit</th>
+                      <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Branch</th>
+                      <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Warehouse</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-slate-200">
+                    {runResult.rows.map((row) => (
+                      <tr key={row.id} className="hover:bg-slate-50">
+                        <td className="px-4 py-3 text-sm text-slate-900">{row.inventory_item?.name || "-"}</td>
+                        <td className="px-4 py-3 text-sm text-slate-600">{row.inventory_item?.category || "-"}</td>
+                        <td className="px-4 py-3 text-sm text-slate-900 font-medium">{row.qty ?? "-"}</td>
+                        <td className="px-4 py-3 text-sm text-slate-600">{row.inventory_item?.unit_measurement || "-"}</td>
+                        <td className="px-4 py-3 text-sm text-slate-600">{row.branch?.name || "-"}</td>
+                        <td className="px-4 py-3 text-sm text-slate-600">{row.warehouse?.name || "-"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <div className="bg-slate-50 px-4 py-3 text-sm text-slate-600 border-t border-slate-200">
+                  Total records: {runResult.rows.length}
+                </div>
+              </div>
+            ) : runResult ? (
               <div className="bg-slate-50 rounded-xl p-6 space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-semibold text-slate-900">{selectedReportName}</h3>
@@ -228,7 +330,7 @@ export default function StandardCustomReportsPage() {
                     Generated
                   </span>
                 </div>
-                
+
                 <div className="grid sm:grid-cols-2 gap-4 text-sm">
                   <div className="space-y-2">
                     <div className="flex justify-between">
@@ -253,7 +355,7 @@ export default function StandardCustomReportsPage() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="pt-4 border-t border-slate-200">
                   <div className="flex items-center justify-between text-sm text-slate-500">
                     <span>Generated at {new Date(runResult.generatedAt).toLocaleString()}</span>
@@ -284,9 +386,9 @@ export default function StandardCustomReportsPage() {
               </div>
               <h3 className="text-lg font-semibold text-slate-900">Export</h3>
             </div>
-            
+
             <p className="text-slate-600 text-sm mb-4">Choose a format to download your report</p>
-            
+
             <div className="space-y-3">
               {[
                 { format: "pdf", label: "PDF", icon: "📄", color: "from-red-500 to-pink-500" },
@@ -317,7 +419,7 @@ export default function StandardCustomReportsPage() {
               </div>
               <h3 className="text-lg font-semibold text-slate-900">Schedule</h3>
             </div>
-            
+
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">Frequency</label>
@@ -331,7 +433,7 @@ export default function StandardCustomReportsPage() {
                   <option value="monthly">Monthly</option>
                 </select>
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">Time</label>
                 <input
@@ -341,7 +443,7 @@ export default function StandardCustomReportsPage() {
                   className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
                 <input
@@ -352,7 +454,7 @@ export default function StandardCustomReportsPage() {
                   className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                 />
               </div>
-              
+
               <button
                 onClick={saveSchedule}
                 className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium rounded-lg hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200"
@@ -362,7 +464,7 @@ export default function StandardCustomReportsPage() {
                 {scheduleSaved && <span className="text-green-300">✓</span>}
               </button>
             </div>
-            
+
             <p className="mt-4 text-xs text-slate-500">
               Reports will be generated with selected filters and delivered to the configured email.
             </p>
@@ -372,4 +474,3 @@ export default function StandardCustomReportsPage() {
     </div>
   );
 }
-
