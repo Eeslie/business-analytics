@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { exportToPDF, exportToExcel, exportToCSV } from "../../../utils/exportUtils";
 
 const PREDEFINED_REPORTS = [
   { id: "sales-summary", name: "Sales Summary" },
@@ -97,10 +98,39 @@ export default function StandardCustomReportsPage() {
   }
 
   async function handleExport(kind) {
+    if (!runResult) {
+      alert("Please generate a report first before exporting.");
+      return;
+    }
+
     setExporting(true);
-    await new Promise((r) => setTimeout(r, 600));
-    setExporting(false);
-    alert(`Exported ${selectedReportName} as ${kind.toUpperCase()}`);
+    
+    try {
+      switch (kind.toLowerCase()) {
+        case 'pdf':
+          exportToPDF(runResult);
+          break;
+        case 'xlsx':
+        case 'excel':
+          exportToExcel(runResult);
+          break;
+        case 'csv':
+          exportToCSV(runResult);
+          break;
+        default:
+          throw new Error(`Unsupported export format: ${kind}`);
+      }
+      
+      // Show success message after a short delay
+      setTimeout(() => {
+        setExporting(false);
+        alert(`Successfully exported ${selectedReportName} as ${kind.toUpperCase()}`);
+      }, 500);
+    } catch (error) {
+      setExporting(false);
+      console.error('Export error:', error);
+      alert(`Failed to export report: ${error.message}`);
+    }
   }
 
   function saveSchedule() {
@@ -387,7 +417,9 @@ export default function StandardCustomReportsPage() {
               <h3 className="text-lg font-semibold text-slate-900">Export</h3>
             </div>
 
-            <p className="text-slate-600 text-sm mb-4">Choose a format to download your report</p>
+            <p className="text-slate-600 text-sm mb-4">
+              {runResult ? "Choose a format to download your report" : "Generate a report first to enable export options"}
+            </p>
 
             <div className="space-y-3">
               {[
@@ -397,9 +429,10 @@ export default function StandardCustomReportsPage() {
               ].map(({ format, label, icon, color }) => (
                 <button
                   key={format}
-                  disabled={exporting}
+                  disabled={exporting || !runResult}
                   onClick={() => handleExport(format)}
                   className="w-full flex items-center space-x-3 p-3 rounded-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  title={!runResult ? "Generate a report first" : `Export as ${label}`}
                 >
                   <div className={`w-8 h-8 bg-gradient-to-br ${color} rounded-lg flex items-center justify-center`}>
                     <span className="text-white text-sm">{icon}</span>
