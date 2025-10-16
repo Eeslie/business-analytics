@@ -12,8 +12,8 @@ const PREDEFINED_REPORTS = [
 const DEPARTMENTS = ["All", "Sales", "Operations", "Finance", "HR"];
 const REGIONS = ["All", "North", "South", "East", "West"];
 
-// Simple hardcoded API URL - no environment variables needed
-const API_BASE_URL = "http://localhost:3001";
+// Use Next.js API route to avoid separate backend port
+const API_BASE_URL = ""; // relative to same origin
 
 export default function StandardCustomReportsPage() {
   const [selectedReportId, setSelectedReportId] = useState("sales-summary");
@@ -134,8 +134,41 @@ export default function StandardCustomReportsPage() {
   }
 
   function saveSchedule() {
-    setScheduleSaved(true);
-    setTimeout(() => setScheduleSaved(false), 1500);
+    async function scheduleNow() {
+      try {
+        if (!schedule.email) {
+          alert("Please enter an email to receive the report");
+          return;
+        }
+        const payload = {
+          reportId: selectedReportId,
+          dateFrom,
+          dateTo,
+          department,
+          region,
+          email: schedule.email,
+          frequency: schedule.frequency,
+          time: schedule.time,
+        };
+        // Create or update scheduled job
+        const res = await fetch('/api/schedule-report', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.error || `HTTP ${res.status}`);
+        }
+        setScheduleSaved(true);
+        setTimeout(() => setScheduleSaved(false), 1500);
+        alert('Schedule saved. Emails will be sent based on your frequency and time.');
+      } catch (e) {
+        console.error(e);
+        alert(`Failed to schedule report: ${e.message}`);
+      }
+    }
+    scheduleNow();
   }
 
   return (
