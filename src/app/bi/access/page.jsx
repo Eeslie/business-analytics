@@ -79,18 +79,16 @@ export default function AccessSecurityReportsPage() {
     <div className="space-y-8">
       {/* Header */}
       <div className="text-center space-y-4">
-        <div className="inline-flex items-center space-x-2 px-4 py-2 bg-purple-50 border border-purple-200 rounded-full text-sm font-medium text-purple-700">
-          <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+        <div className="inline-flex items-center space-x-2 px-4 py-2 bg-green-50 border border-green-200 rounded-full text-sm font-medium text-green-800">
+          <span className="w-2 h-2 bg-green-800 rounded-full"></span>
           <span>Access & Security</span>
         </div>
         
-        <h1 className="text-4xl font-bold tracking-tight">
-          <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-            Role-Based Access & Security
-          </span>
+        <h1 className="text-4xl font-bold tracking-tight text-green-800">
+          Role-Based Access & Security
         </h1>
         
-        <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+        <p className="text-xl text-black/80 max-w-3xl mx-auto">
           Control who can view, edit, or export sensitive reports using roles and departmental scopes. 
           All actions are logged to support privacy and integrity.
         </p>
@@ -102,19 +100,19 @@ export default function AccessSecurityReportsPage() {
           {/* Role Configuration */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-green-800 rounded-xl flex items-center justify-center">
                 <span className="text-white text-lg">👥</span>
               </div>
-              <h2 className="text-2xl font-bold text-slate-900">Roles & Scopes</h2>
+              <h2 className="text-2xl font-bold text-green-800">Roles & Scopes</h2>
             </div>
 
             <div className="grid sm:grid-cols-3 gap-6">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">User Role</label>
+                <label className="block text-sm font-medium text-black mb-2">User Role</label>
                 <select
                   value={roleId}
                   onChange={(e) => setRoleId(e.target.value)}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                 >
                   {ROLES.map((r) => (
                     <option key={r.id} value={r.id}>{r.name}</option>
@@ -122,11 +120,11 @@ export default function AccessSecurityReportsPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">User Department</label>
+                <label className="block text-sm font-medium text-black mb-2">User Department</label>
                 <select
                   value={userDepartment}
                   onChange={(e) => setUserDepartment(e.target.value)}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                 >
                   {DEPARTMENTS.map((d) => (
                     <option key={d} value={d}>{d}</option>
@@ -134,11 +132,11 @@ export default function AccessSecurityReportsPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Department Scope</label>
+                <label className="block text-sm font-medium text-black mb-2">Department Scope</label>
                 <select
                   value={departmentScope}
                   onChange={(e) => setDepartmentScope(e.target.value)}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                 >
                   {DEPARTMENTS.map((d) => (
                     <option key={d} value={d}>{d}</option>
@@ -149,19 +147,19 @@ export default function AccessSecurityReportsPage() {
 
             {/* Role Permissions Display */}
             <div className="mt-6 p-4 bg-slate-50 rounded-xl">
-              <h3 className="text-sm font-semibold text-slate-700 mb-3">Current Role Permissions</h3>
+              <h3 className="text-sm font-semibold text-green-800 mb-3">Current Role Permissions</h3>
               <div className="flex space-x-6">
                 <div className="flex items-center space-x-2">
                   <div className={`w-3 h-3 rounded-full ${role?.view ? 'bg-green-500' : 'bg-slate-300'}`}></div>
-                  <span className="text-sm text-slate-600">View</span>
+                  <span className="text-sm text-black">View</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className={`w-3 h-3 rounded-full ${role?.edit ? 'bg-green-500' : 'bg-slate-300'}`}></div>
-                  <span className="text-sm text-slate-600">Edit</span>
+                  <span className="text-sm text-black">Edit</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className={`w-3 h-3 rounded-full ${role?.export ? 'bg-green-500' : 'bg-slate-300'}`}></div>
-                  <span className="text-sm text-slate-600">Export</span>
+                  <span className="text-sm text-black">Export</span>
                 </div>
               </div>
             </div>
@@ -170,19 +168,19 @@ export default function AccessSecurityReportsPage() {
           {/* Report & Actions */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-green-800 rounded-xl flex items-center justify-center">
                 <span className="text-white text-lg">📊</span>
               </div>
-              <h2 className="text-2xl font-bold text-slate-900">Report & Actions</h2>
+              <h2 className="text-2xl font-bold text-green-800">Report & Actions</h2>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Select Report</label>
+                <label className="block text-sm font-medium text-black mb-2">Select Report</label>
                 <select
                   value={selectedReportId}
                   onChange={(e) => setSelectedReportId(e.target.value)}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                 >
                   {REPORTS.map((r) => (
                     <option key={r.id} value={r.id}>{r.name}</option>
@@ -193,7 +191,7 @@ export default function AccessSecurityReportsPage() {
               <div className="flex items-end space-x-3">
                 <button
                   onClick={viewReport}
-                  className="flex-1 flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-medium rounded-lg hover:from-emerald-700 hover:to-teal-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-all duration-200"
+                  className="flex-1 flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-medium rounded-lg hover:from-green-700 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200"
                 >
                   <span>👁️</span>
                   <span>View</span>
@@ -218,16 +216,16 @@ export default function AccessSecurityReportsPage() {
             {/* Access Status */}
             <div className="mt-6 p-4 rounded-xl border-2 border-dashed">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="text-sm font-semibold text-slate-700">Access Status</h3>
+                <h3 className="text-sm font-semibold text-green-800">Access Status</h3>
                 <div className={`px-3 py-1 rounded-full text-xs font-medium ${
                   allowed 
                     ? 'bg-green-100 text-green-800 border border-green-200' 
-                    : 'bg-red-100 text-red-800 border border-red-200'
+                    : 'bg-red-100 text-red-900 border border-red-200'
                 }`}>
                   {allowed ? '✓ Allowed' : '✗ Denied'}
                 </div>
               </div>
-              <p className="text-sm text-slate-600">
+              <p className="text-sm text-black">
                 {allowed 
                   ? 'User has appropriate permissions and department access for this report.'
                   : 'Access denied due to insufficient permissions or department scope restrictions.'
@@ -243,9 +241,9 @@ export default function AccessSecurityReportsPage() {
                   type="checkbox"
                   checked={watermark}
                   onChange={(e) => setWatermark(e.target.checked)}
-                  className="w-4 h-4 text-purple-600 border-slate-300 rounded focus:ring-purple-500"
+                  className="w-4 h-4 text-green-600 border-slate-300 rounded focus:ring-green-500"
                 />
-                <label htmlFor="watermark" className="text-sm font-medium text-slate-700">
+                <label htmlFor="watermark" className="text-sm font-medium text-black">
                   Apply export watermark and checksum (privacy & integrity)
                 </label>
               </div>
@@ -258,10 +256,10 @@ export default function AccessSecurityReportsPage() {
           {/* Access Logs */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-green-800 rounded-lg flex items-center justify-center">
                 <span className="text-white text-sm">📋</span>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900">Access Logs</h3>
+              <h3 className="text-lg font-semibold text-green-800">Access Logs</h3>
             </div>
             
             <div className="space-y-3 max-h-96 overflow-y-auto">
@@ -270,8 +268,8 @@ export default function AccessSecurityReportsPage() {
                   <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-3">
                     <span className="text-slate-400 text-lg">📝</span>
                   </div>
-                  <p className="text-sm text-slate-500">No access attempts yet</p>
-                  <p className="text-xs text-slate-400 mt-1">Try an action to see logs</p>
+                  <p className="text-sm text-black/70">No access attempts yet</p>
+                  <p className="text-xs text-black/50 mt-1">Try an action to see logs</p>
                 </div>
               ) : (
                 logs.map((log) => (
@@ -281,15 +279,15 @@ export default function AccessSecurityReportsPage() {
                         <div className={`w-2 h-2 rounded-full ${
                           log.outcome === 'granted' ? 'bg-green-500' : 'bg-red-500'
                         }`}></div>
-                        <span className="text-sm font-medium text-slate-700">{log.user}</span>
+                        <span className="text-sm font-medium text-black">{log.user}</span>
                       </div>
-                      <span className="text-xs text-slate-500">{log.at}</span>
+                      <span className="text-xs text-black/70">{log.at}</span>
                     </div>
-                    <div className="text-sm text-slate-600">
+                    <div className="text-sm text-black">
                       <span className="font-medium">{log.action}</span> on <span className="font-medium">{log.report}</span>
                     </div>
                     <div className={`text-xs mt-1 ${
-                      log.outcome === 'granted' ? 'text-green-600' : 'text-red-600'
+                      log.outcome === 'granted' ? 'text-green-900' : 'text-red-900'
                     }`}>
                       {log.outcome === 'granted' ? '✓ Granted' : '✗ Denied'}
                     </div>
@@ -302,10 +300,10 @@ export default function AccessSecurityReportsPage() {
           {/* Security Features */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-green-800 rounded-lg flex items-center justify-center">
                 <span className="text-white text-sm">🛡️</span>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900">Security Features</h3>
+              <h3 className="text-lg font-semibold text-green-800">Security Features</h3>
             </div>
             
             <div className="space-y-4">
@@ -314,8 +312,8 @@ export default function AccessSecurityReportsPage() {
                   <span className="text-green-600 text-xs">✓</span>
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium text-slate-700">PII Masking</h4>
-                  <p className="text-xs text-slate-500">Sensitive data hidden for non-admin roles</p>
+                  <h4 className="text-sm font-medium text-black">PII Masking</h4>
+                  <p className="text-xs text-black/70">Sensitive data hidden for non-admin roles</p>
                 </div>
               </div>
               
@@ -324,8 +322,8 @@ export default function AccessSecurityReportsPage() {
                   <span className="text-green-600 text-xs">✓</span>
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium text-slate-700">Watermark & Checksum</h4>
-                  <p className="text-xs text-slate-500">Export integrity verification</p>
+                  <h4 className="text-sm font-medium text-black">Watermark & Checksum</h4>
+                  <p className="text-xs text-black/70">Export integrity verification</p>
                 </div>
               </div>
               
@@ -334,8 +332,8 @@ export default function AccessSecurityReportsPage() {
                   <span className="text-green-600 text-xs">✓</span>
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium text-slate-700">Least Privilege</h4>
-                  <p className="text-xs text-slate-500">Role and department-based access control</p>
+                  <h4 className="text-sm font-medium text-black">Least Privilege</h4>
+                  <p className="text-xs text-black/70">Role and department-based access control</p>
                 </div>
               </div>
             </div>

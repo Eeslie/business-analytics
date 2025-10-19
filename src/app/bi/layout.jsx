@@ -2,23 +2,19 @@ import Link from "next/link";
 
 export default function BiLayout({ children }) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 text-slate-900">
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <div className="min-h-screen bg-gradient-to-br from-white to-slate-50 text-black">
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-green-800 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">BI</span>
                 </div>
-                <h1 className="text-xl font-bold tracking-tight">
-                  <span className="bg-gradient-to-r from-emerald-600 to-emerald-700 bg-clip-text text-transparent">
-                    Business Intelligence
-                  </span>
+                <h1 className="text-xl font-bold tracking-tight text-green-800">
+                  Business Intelligence
                   <span className="mx-2 text-slate-400">/</span>
-                  <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
-                    Reports
-                  </span>
+                  <span className="text-green-900">Reports</span>
                 </h1>
               </div>
             </div>
@@ -34,7 +30,7 @@ export default function BiLayout({ children }) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
+                  className="group flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-black hover:text-green-900 hover:bg-green-50 transition-all duration-200"
                 >
                   <span className="text-base">{item.icon}</span>
                   <span>{item.label}</span>

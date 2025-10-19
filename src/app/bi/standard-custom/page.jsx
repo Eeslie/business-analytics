@@ -111,18 +111,16 @@ export default function StandardCustomReportsPage() {
     <div className="space-y-8 p-8 bg-slate-50 min-h-screen">
       {/* Header */}
       <div className="text-center space-y-4">
-        <div className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-50 border border-blue-200 rounded-full text-sm font-medium text-blue-700">
-          <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+        <div className="inline-flex items-center space-x-2 px-4 py-2 bg-green-50 border border-green-200 rounded-full text-sm font-medium text-green-800">
+          <span className="w-2 h-2 bg-green-800 rounded-full"></span>
           <span>Report Generation</span>
         </div>
 
-        <h1 className="text-4xl font-bold tracking-tight">
-          <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-            Standard & Custom Reports
-          </span>
+        <h1 className="text-4xl font-bold tracking-tight text-green-800">
+          Standard & Custom Reports
         </h1>
 
-        <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+        <p className="text-xl text-black/80 max-w-3xl mx-auto">
           Generate built-in reports across all modules with customizable layouts, filters, and scheduling options.
         </p>
       </div>
@@ -141,10 +139,10 @@ export default function StandardCustomReportsPage() {
           {/* Report Selection */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-green-800 rounded-xl flex items-center justify-center">
                 <span className="text-white text-lg">📊</span>
               </div>
-              <h2 className="text-2xl font-bold text-slate-900">Predefined Reports</h2>
+              <h2 className="text-2xl font-bold text-green-800">Predefined Reports</h2>
             </div>
 
             <div className="grid sm:grid-cols-3 gap-4">
@@ -184,42 +182,42 @@ export default function StandardCustomReportsPage() {
           {/* Filters */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-green-800 rounded-xl flex items-center justify-center">
                 <span className="text-white text-lg">⚙️</span>
               </div>
-              <h2 className="text-2xl font-bold text-slate-900">Customize Filters</h2>
+              <h2 className="text-2xl font-bold text-green-800">Customize Filters</h2>
             </div>
 
             {/* Date Range Filter - Highlighted */}
-            <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 rounded-xl">
-              <label className="block text-sm font-semibold text-blue-900 mb-3 flex items-center">
+            <div className="mb-6 p-4 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl">
+              <label className="block text-sm font-semibold text-green-900 mb-3 flex items-center">
                 <span className="mr-2">📅</span>
                 Transaction Date Range
               </label>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs text-slate-600 mb-1">From Date</label>
+                  <label className="block text-xs text-black mb-1">From Date</label>
                   <input
                     type="date"
                     value={dateFrom}
                     onChange={(e) => setDateFrom(e.target.value)}
-                    className="w-full px-4 py-3 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white"
+                    className="w-full px-4 py-3 border border-green-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all bg-white"
                     placeholder="From"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-600 mb-1">To Date</label>
+                  <label className="block text-xs text-black mb-1">To Date</label>
                   <input
                     type="date"
                     value={dateTo}
                     onChange={(e) => setDateTo(e.target.value)}
-                    className="w-full px-4 py-3 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white"
+                    className="w-full px-4 py-3 border border-green-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all bg-white"
                     placeholder="To"
                   />
                 </div>
               </div>
               {(dateFrom || dateTo) && (
-                <div className="mt-2 text-xs text-blue-700 flex items-center">
+                <div className="mt-2 text-xs text-green-900 flex items-center">
                   <span className="mr-2">ℹ️</span>
                   <span>Filtering inventory items that had transactions in this date range</span>
                 </div>
@@ -228,11 +226,11 @@ export default function StandardCustomReportsPage() {
 
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-slate-700">Department</label>
+                <label className="block text-sm font-medium text-black">Department</label>
                 <select
                   value={department}
                   onChange={(e) => setDepartment(e.target.value)}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                 >
                   {DEPARTMENTS.map((d) => (
                     <option key={d} value={d}>
@@ -243,11 +241,11 @@ export default function StandardCustomReportsPage() {
               </div>
 
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-slate-700">Region</label>
+                <label className="block text-sm font-medium text-black">Region</label>
                 <select
                   value={region}
                   onChange={(e) => setRegion(e.target.value)}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                 >
                   {REGIONS.map((r) => (
                     <option key={r} value={r}>
@@ -259,7 +257,7 @@ export default function StandardCustomReportsPage() {
             </div>
 
             <div className="mt-6">
-              <label className="block text-sm font-medium text-slate-700 mb-3">Include Columns</label>
+              <label className="block text-sm font-medium text-black mb-3">Include Columns</label>
               <div className="flex flex-wrap gap-4">
                 {Object.keys(includeColumns).map((key) => (
                   <label key={key} className="flex items-center space-x-2 cursor-pointer">
@@ -267,9 +265,9 @@ export default function StandardCustomReportsPage() {
                       type="checkbox"
                       checked={includeColumns[key]}
                       onChange={(e) => setIncludeColumns({ ...includeColumns, [key]: e.target.checked })}
-                      className="w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500"
+                      className="w-4 h-4 text-green-600 border-slate-300 rounded focus:ring-green-500"
                     />
-                    <span className="text-sm font-medium text-slate-700 capitalize">{key}</span>
+                    <span className="text-sm font-medium text-black capitalize">{key}</span>
                   </label>
                 ))}
               </div>
@@ -279,7 +277,7 @@ export default function StandardCustomReportsPage() {
               <button
                 onClick={runReport}
                 disabled={loading}
-                className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-medium rounded-lg hover:from-green-700 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <>
@@ -299,38 +297,38 @@ export default function StandardCustomReportsPage() {
           {/* Results */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-green-800 rounded-xl flex items-center justify-center">
                 <span className="text-white text-lg">📈</span>
               </div>
-              <h2 className="text-2xl font-bold text-slate-900">Report Results</h2>
+              <h2 className="text-2xl font-bold text-green-800">Report Results</h2>
             </div>
 
             {runResult && runResult.reportId === "inventory-stock" && runResult.rows ? (
               <div className="space-y-4">
                 {/* Summary Info */}
-                <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg p-4 border border-blue-200">
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-4 border border-green-200">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                     <div>
-                      <div className="text-2xl font-bold text-blue-900">{runResult.rows.length}</div>
-                      <div className="text-xs text-slate-600">Total Items</div>
+                      <div className="text-2xl font-bold text-green-900">{runResult.rows.length}</div>
+                      <div className="text-xs text-black">Total Items</div>
                     </div>
                     <div>
-                      <div className="text-2xl font-bold text-blue-900">
+                      <div className="text-2xl font-bold text-green-900">
                         {runResult.rows.reduce((sum, row) => sum + (row.transaction_count || 0), 0)}
                       </div>
-                      <div className="text-xs text-slate-600">Total Transactions</div>
+                      <div className="text-xs text-black">Total Transactions</div>
                     </div>
                     <div>
-                      <div className="text-2xl font-bold text-blue-900">
+                      <div className="text-2xl font-bold text-green-900">
                         {dateFrom || "No start"}
                       </div>
-                      <div className="text-xs text-slate-600">From Date</div>
+                      <div className="text-xs text-black">From Date</div>
                     </div>
                     <div>
-                      <div className="text-2xl font-bold text-blue-900">
+                      <div className="text-2xl font-bold text-green-900">
                         {dateTo || "No end"}
                       </div>
-                      <div className="text-xs text-slate-600">To Date</div>
+                      <div className="text-xs text-black">To Date</div>
                     </div>
                   </div>
                 </div>
@@ -340,26 +338,26 @@ export default function StandardCustomReportsPage() {
                   <table className="min-w-full divide-y divide-slate-200">
                     <thead className="bg-slate-100">
                       <tr>
-                        <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Item Name</th>
-                        <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Category</th>
-                        <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Quantity</th>
-                        <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Unit</th>
-                        <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Branch</th>
-                        <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Warehouse</th>
-                        <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Transactions</th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold text-green-800 uppercase tracking-wider">Item Name</th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold text-green-800 uppercase tracking-wider">Category</th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold text-green-800 uppercase tracking-wider">Quantity</th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold text-green-800 uppercase tracking-wider">Unit</th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold text-green-800 uppercase tracking-wider">Branch</th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold text-green-800 uppercase tracking-wider">Warehouse</th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold text-green-800 uppercase tracking-wider">Transactions</th>
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-slate-200">
                       {runResult.rows.map((row) => (
                         <tr key={row.id} className="hover:bg-slate-50">
-                          <td className="px-4 py-3 text-sm text-slate-900">{row.inventory_item?.name || "-"}</td>
-                          <td className="px-4 py-3 text-sm text-slate-600">{row.inventory_item?.category || "-"}</td>
-                          <td className="px-4 py-3 text-sm text-slate-900 font-medium">{row.qty ?? "-"}</td>
-                          <td className="px-4 py-3 text-sm text-slate-600">{row.inventory_item?.unit_measurement || "-"}</td>
-                          <td className="px-4 py-3 text-sm text-slate-600">{row.branch?.name || "-"}</td>
-                          <td className="px-4 py-3 text-sm text-slate-600">{row.warehouse?.name || "-"}</td>
+                          <td className="px-4 py-3 text-sm text-black">{row.inventory_item?.name || "-"}</td>
+                          <td className="px-4 py-3 text-sm text-black/70">{row.inventory_item?.category || "-"}</td>
+                          <td className="px-4 py-3 text-sm text-black font-medium">{row.qty ?? "-"}</td>
+                          <td className="px-4 py-3 text-sm text-black/70">{row.inventory_item?.unit_measurement || "-"}</td>
+                          <td className="px-4 py-3 text-sm text-black/70">{row.branch?.name || "-"}</td>
+                          <td className="px-4 py-3 text-sm text-black/70">{row.warehouse?.name || "-"}</td>
                           <td className="px-4 py-3 text-sm">
-                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
                               {row.transaction_count || 0} txns
                             </span>
                           </td>
@@ -367,7 +365,7 @@ export default function StandardCustomReportsPage() {
                       ))}
                     </tbody>
                   </table>
-                  <div className="bg-slate-50 px-4 py-3 text-sm text-slate-600 border-t border-slate-200">
+                  <div className="bg-slate-50 px-4 py-3 text-sm text-black border-t border-slate-200">
                     Total records: {runResult.rows.length}
                   </div>
                 </div>
@@ -375,7 +373,7 @@ export default function StandardCustomReportsPage() {
             ) : runResult ? (
               <div className="bg-slate-50 rounded-xl p-6 space-y-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-slate-900">{selectedReportName}</h3>
+                  <h3 className="text-lg font-semibold text-green-800">{selectedReportName}</h3>
                   <span className="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
                     Generated
                   </span>
@@ -384,32 +382,32 @@ export default function StandardCustomReportsPage() {
                 <div className="grid sm:grid-cols-2 gap-4 text-sm">
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span className="text-slate-600">Date Range:</span>
-                      <span className="font-medium text-slate-900">
+                      <span className="text-black/70">Date Range:</span>
+                      <span className="font-medium text-black">
                         {runResult.dateFrom || "Not set"} - {runResult.dateTo || "Not set"}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-600">Department:</span>
-                      <span className="font-medium text-slate-900">{runResult.department}</span>
+                      <span className="text-black/70">Department:</span>
+                      <span className="font-medium text-black">{runResult.department}</span>
                     </div>
                   </div>
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span className="text-slate-600">Region:</span>
-                      <span className="font-medium text-slate-900">{runResult.region}</span>
+                      <span className="text-black/70">Region:</span>
+                      <span className="font-medium text-black">{runResult.region}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-600">Columns:</span>
-                      <span className="font-medium text-slate-900">{runResult.columns.length}</span>
+                      <span className="text-black/70">Columns:</span>
+                      <span className="font-medium text-black">{runResult.columns.length}</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="pt-4 border-t border-slate-200">
-                  <div className="flex items-center justify-between text-sm text-slate-500">
+                  <div className="flex items-center justify-between text-sm text-black/70">
                     <span>Generated at {new Date(runResult.generatedAt).toLocaleString()}</span>
-                    <span className="text-xs bg-slate-200 px-2 py-1 rounded">
+                    <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">
                       {runResult.columns.join(", ")}
                     </span>
                   </div>
@@ -420,7 +418,7 @@ export default function StandardCustomReportsPage() {
                 <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl text-slate-400">📊</span>
                 </div>
-                <p className="text-slate-500">Generate a report to see results and parameters</p>
+                <p className="text-black/70">Generate a report to see results and parameters</p>
               </div>
             )}
           </div>
@@ -431,13 +429,13 @@ export default function StandardCustomReportsPage() {
           {/* Export */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-green-800 rounded-lg flex items-center justify-center">
                 <span className="text-white text-sm">📥</span>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900">Export</h3>
+              <h3 className="text-lg font-semibold text-green-800">Export</h3>
             </div>
 
-            <p className="text-slate-600 text-sm mb-4">Choose a format to download your report</p>
+            <p className="text-black text-sm mb-4">Choose a format to download your report</p>
 
             <div className="space-y-3">
               {[
@@ -454,7 +452,7 @@ export default function StandardCustomReportsPage() {
                   <div className={`w-8 h-8 bg-gradient-to-br ${color} rounded-lg flex items-center justify-center`}>
                     <span className="text-white text-sm">{icon}</span>
                   </div>
-                  <span className="font-medium text-slate-700">{label}</span>
+                  <span className="font-medium text-black">{label}</span>
                   {exporting && <div className="ml-auto w-4 h-4 border-2 border-slate-300 border-t-blue-600 rounded-full animate-spin"></div>}
                 </button>
               ))}
@@ -466,19 +464,19 @@ export default function StandardCustomReportsPage() {
           {/* Schedule */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-green-800 rounded-lg flex items-center justify-center">
                 <span className="text-white text-sm">⏰</span>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900">Schedule</h3>
+              <h3 className="text-lg font-semibold text-green-800">Schedule</h3>
             </div>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Frequency</label>
+                <label className="block text-sm font-medium text-black mb-2">Frequency</label>
                 <select
                   value={schedule.frequency}
                   onChange={(e) => setSchedule({ ...schedule, frequency: e.target.value })}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                 >
                   <option value="daily">Daily</option>
                   <option value="weekly">Weekly</option>
@@ -487,29 +485,29 @@ export default function StandardCustomReportsPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Time</label>
+                <label className="block text-sm font-medium text-black mb-2">Time</label>
                 <input
                   type="time"
                   value={schedule.time}
                   onChange={(e) => setSchedule({ ...schedule, time: e.target.value })}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
+                <label className="block text-sm font-medium text-black mb-2">Email</label>
                 <input
                   type="email"
                   placeholder="name@example.com"
                   value={schedule.email}
                   onChange={(e) => setSchedule({ ...schedule, email: e.target.value })}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                 />
               </div>
 
               <button
                 onClick={saveSchedule}
-                className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium rounded-lg hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200"
+                className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-medium rounded-lg hover:from-green-700 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200"
               >
                 <span>💾</span>
                 <span>Save Schedule</span>
@@ -517,7 +515,7 @@ export default function StandardCustomReportsPage() {
               </button>
             </div>
 
-            <p className="mt-4 text-xs text-slate-500">
+            <p className="mt-4 text-xs text-black/70">
               Reports will be generated with selected filters and delivered to the configured email.
             </p>
           </div>

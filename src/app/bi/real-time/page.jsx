@@ -62,18 +62,16 @@ export default function RealTimeReportsPage() {
     <div className="space-y-8">
       {/* Header */}
       <div className="text-center space-y-4">
-        <div className="inline-flex items-center space-x-2 px-4 py-2 bg-emerald-50 border border-emerald-200 rounded-full text-sm font-medium text-emerald-700">
-          <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+        <div className="inline-flex items-center space-x-2 px-4 py-2 bg-green-50 border border-green-200 rounded-full text-sm font-medium text-green-800">
+          <span className="w-2 h-2 bg-green-800 rounded-full animate-pulse"></span>
           <span>Live Data</span>
         </div>
         
-        <h1 className="text-4xl font-bold tracking-tight">
-          <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-            Real-Time Data Retrieval
-          </span>
+        <h1 className="text-4xl font-bold tracking-tight text-green-800">
+          Real-Time Data Retrieval
         </h1>
         
-        <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+        <p className="text-xl text-black/80 max-w-3xl mx-auto">
           Pull live data from transactions and logs to generate on-the-fly reports without waiting for batch processing.
         </p>
       </div>
@@ -85,8 +83,8 @@ export default function RealTimeReportsPage() {
             <span className="text-red-600 text-sm">⚠️</span>
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-red-800">Data Stale Warning</h3>
-            <p className="text-sm text-red-700">Last update was {ageSec}s ago. Consider enabling auto-refresh or refreshing now.</p>
+            <h3 className="text-sm font-semibold text-red-900">Data Stale Warning</h3>
+            <p className="text-sm text-red-900">Last update was {ageSec}s ago. Consider enabling auto-refresh or refreshing now.</p>
           </div>
         </div>
       )}
@@ -98,15 +96,15 @@ export default function RealTimeReportsPage() {
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 bg-green-800 rounded-xl flex items-center justify-center">
                   <span className="text-white text-lg">📊</span>
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900">Live KPIs</h2>
+                <h2 className="text-2xl font-bold text-green-800">Live KPIs</h2>
               </div>
               <div className={`flex items-center space-x-2 px-3 py-1 rounded-full text-sm font-medium ${
                 ageSec < 5 ? 'bg-green-100 text-green-800' : 
                 ageSec < 15 ? 'bg-yellow-100 text-yellow-800' : 
-                'bg-red-100 text-red-800'
+                'bg-red-100 text-red-900'
               }`}>
                 <div className={`w-2 h-2 rounded-full ${
                   ageSec < 5 ? 'bg-green-500' : 
@@ -208,10 +206,10 @@ export default function RealTimeReportsPage() {
           {/* Decision Support */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-green-800 rounded-xl flex items-center justify-center">
                 <span className="text-white text-lg">🎯</span>
               </div>
-              <h2 className="text-2xl font-bold text-slate-900">Decision Support</h2>
+              <h2 className="text-2xl font-bold text-green-800">Decision Support</h2>
             </div>
             
             <div className="grid sm:grid-cols-3 gap-6">
@@ -219,29 +217,29 @@ export default function RealTimeReportsPage() {
                 <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
                   <span className="text-purple-600 text-xl">🔄</span>
                 </div>
-                <h3 className="font-semibold text-slate-900 mb-1">Auto-refresh</h3>
-                <p className="text-sm text-slate-600">Dashboards update automatically</p>
+                <h3 className="font-semibold text-black mb-1">Auto-refresh</h3>
+                <p className="text-sm text-black/70">Dashboards update automatically</p>
               </div>
               
               <div className="text-center p-4 bg-slate-50 rounded-xl">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
                   <span className="text-blue-600 text-xl">🔗</span>
                 </div>
-                <h3 className="font-semibold text-slate-900 mb-1">No Data Silos</h3>
-                <p className="text-sm text-slate-600">Prevent outdated views</p>
+                <h3 className="font-semibold text-black mb-1">No Data Silos</h3>
+                <p className="text-sm text-black/70">Prevent outdated views</p>
               </div>
               
               <div className="text-center p-4 bg-slate-50 rounded-xl">
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
                   <span className="text-green-600 text-xl">🔌</span>
                 </div>
-                <h3 className="font-semibold text-slate-900 mb-1">API Ready</h3>
-                <p className="text-sm text-slate-600">Direct data access</p>
+                <h3 className="font-semibold text-black mb-1">API Ready</h3>
+                <p className="text-sm text-black/70">Direct data access</p>
               </div>
             </div>
             
             <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
-              <p className="text-sm text-slate-700">
+              <p className="text-sm text-black">
                 <span className="font-semibold">💡 Pro Tip:</span> Use the latest values to take immediate action. 
                 All panels reflect the most recent data pull for real-time decision making.
               </p>
@@ -254,10 +252,10 @@ export default function RealTimeReportsPage() {
           {/* Recent Events */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-green-800 rounded-lg flex items-center justify-center">
                 <span className="text-white text-sm">📋</span>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900">Recent Events</h3>
+              <h3 className="text-lg font-semibold text-green-800">Recent Events</h3>
             </div>
             
             <div className="space-y-3 max-h-80 overflow-y-auto">
@@ -266,15 +264,15 @@ export default function RealTimeReportsPage() {
                   <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-3">
                     <span className="text-slate-400 text-lg">📝</span>
                   </div>
-                  <p className="text-sm text-slate-500">No events yet</p>
-                  <p className="text-xs text-slate-400 mt-1">Enable auto-refresh to start</p>
+                  <p className="text-sm text-black/70">No events yet</p>
+                  <p className="text-xs text-black/50 mt-1">Enable auto-refresh to start</p>
                 </div>
               ) : (
                 events.map((event) => (
                   <div key={event.id} className="p-3 bg-slate-50 rounded-lg border border-slate-200">
                     <div className="flex items-start justify-between mb-1">
-                      <span className="text-sm text-slate-700">{event.message}</span>
-                      <span className="text-xs text-slate-500 flex-shrink-0 ml-2">{event.at}</span>
+                      <span className="text-sm text-black">{event.message}</span>
+                      <span className="text-xs text-black/70 flex-shrink-0 ml-2">{event.at}</span>
                     </div>
                   </div>
                 ))
@@ -285,10 +283,10 @@ export default function RealTimeReportsPage() {
           {/* Anti-stale Safeguards */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-green-800 rounded-lg flex items-center justify-center">
                 <span className="text-white text-sm">🛡️</span>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900">Data Freshness</h3>
+              <h3 className="text-lg font-semibold text-green-800">Data Freshness</h3>
             </div>
             
             <div className="space-y-4">
@@ -297,8 +295,8 @@ export default function RealTimeReportsPage() {
                   <span className="text-green-600 text-xs">✓</span>
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium text-slate-700">Freshness Indicator</h4>
-                  <p className="text-xs text-slate-500">Color-coded status for data age</p>
+                  <h4 className="text-sm font-medium text-black">Freshness Indicator</h4>
+                  <p className="text-xs text-black/70">Color-coded status for data age</p>
                 </div>
               </div>
               
@@ -307,8 +305,8 @@ export default function RealTimeReportsPage() {
                   <span className="text-green-600 text-xs">✓</span>
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium text-slate-700">Auto-refresh Polling</h4>
-                  <p className="text-xs text-slate-500">Adjustable interval updates</p>
+                  <h4 className="text-sm font-medium text-black">Auto-refresh Polling</h4>
+                  <p className="text-xs text-black/70">Adjustable interval updates</p>
                 </div>
               </div>
               
@@ -317,8 +315,8 @@ export default function RealTimeReportsPage() {
                   <span className="text-green-600 text-xs">✓</span>
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium text-slate-700">Stale Warning</h4>
-                  <p className="text-xs text-slate-500">Banner alerts for inactive data</p>
+                  <h4 className="text-sm font-medium text-black">Stale Warning</h4>
+                  <p className="text-xs text-black/70">Banner alerts for inactive data</p>
                 </div>
               </div>
             </div>
