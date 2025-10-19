@@ -11,8 +11,7 @@ const PREDEFINED_REPORTS = [
 const DEPARTMENTS = ["All", "Sales", "Operations", "Finance", "HR"];
 const REGIONS = ["All", "North", "South", "East", "West"];
 
-// Simple hardcoded API URL - no environment variables needed
-const API_BASE_URL = "http://localhost:3001";
+const API_BASE_URL = "http://localhost:3000";
 
 export default function StandardCustomReportsPage() {
   const [selectedReportId, setSelectedReportId] = useState("inventory-stock");
