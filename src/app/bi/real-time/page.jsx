@@ -61,17 +61,17 @@ export default function RealTimeReportsPage() {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="text-center space-y-4">
-        <div className="inline-flex items-center space-x-2 px-4 py-2 bg-green-50 border border-green-200 rounded-full text-sm font-medium text-green-800">
-          <span className="w-2 h-2 bg-green-800 rounded-full animate-pulse"></span>
-          <span>Live Data</span>
+      <div className="text-center space-y-6">
+        <div className="inline-flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-green-100 to-emerald-100 border-2 border-green-300 rounded-full text-sm font-bold text-green-800 shadow-lg">
+          <span className="w-3 h-3 bg-green-800 rounded-full animate-pulse"></span>
+          <span>Live Data Analytics</span>
         </div>
         
-        <h1 className="text-4xl font-bold tracking-tight text-green-800">
+        <h1 className="text-5xl font-bold tracking-tight text-green-800">
           Real-Time Data Retrieval
         </h1>
         
-        <p className="text-xl text-black/80 max-w-3xl mx-auto">
+        <p className="text-xl text-black max-w-4xl mx-auto leading-relaxed">
           Pull live data from transactions and logs to generate on-the-fly reports without waiting for batch processing.
         </p>
       </div>

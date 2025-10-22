@@ -59,36 +59,36 @@ export default function BiOverviewPage() {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="text-center space-y-4">
-        <div className="inline-flex items-center space-x-2 px-4 py-2 bg-green-50 border border-green-200 rounded-full text-sm font-medium text-green-800">
-          <span className="w-2 h-2 bg-green-800 rounded-full"></span>
-          <span>Business Intelligence Dashboard</span>
+      <div className="text-center space-y-6">
+        <div className="inline-flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-green-100 to-emerald-100 border-2 border-green-300 rounded-full text-sm font-bold text-green-800 shadow-lg">
+          <div className="w-3 h-3 bg-green-800 rounded-full animate-pulse"></div>
+          <span>Starbucks Business Intelligence Dashboard</span>
         </div>
         
-        <h1 className="text-4xl font-bold tracking-tight text-green-800">
+        <h1 className="text-5xl font-bold tracking-tight text-green-800">
           Welcome to BI & Reports
         </h1>
         
-        <p className="text-xl text-black/80 max-w-3xl mx-auto">
+        <p className="text-xl text-black max-w-4xl mx-auto leading-relaxed">
           Access powerful business intelligence tools and generate comprehensive reports 
-          to drive data-driven decisions across your organization.
+          to drive data-driven decisions across your Starbucks organization.
         </p>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
         {STATS.map((stat, index) => (
-          <div key={index} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="text-sm font-medium text-black">{stat.label}</h3>
-              <div className={`flex items-center space-x-1 text-xs font-medium ${
-                stat.trend === 'up' ? 'text-green-900' : 'text-red-900'
+          <div key={index} className="bg-white rounded-2xl border-2 border-green-200 shadow-lg hover:shadow-xl transition-all duration-300 p-6 group">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-bold text-green-800">{stat.label}</h3>
+              <div className={`flex items-center space-x-1 text-xs font-bold px-2 py-1 rounded-full ${
+                stat.trend === 'up' ? 'bg-green-100 text-green-900' : 'bg-red-100 text-red-900'
               }`}>
                 <span>{stat.trend === 'up' ? '↗' : '↘'}</span>
                 <span>{stat.change}</span>
               </div>
             </div>
-            <div className="text-2xl font-bold text-black">{stat.value}</div>
+            <div className="text-3xl font-bold text-black group-hover:text-green-800 transition-colors">{stat.value}</div>
           </div>
         ))}
       </div>
@@ -99,27 +99,27 @@ export default function BiOverviewPage() {
           <Link
             key={module.id}
             href={module.href}
-            className={`group relative bg-white border border-slate-200 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]`}
+            className={`group relative bg-white border-2 border-green-200 rounded-3xl p-8 hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:border-green-300`}
             onMouseEnter={() => setSelectedModule(module.id)}
             onMouseLeave={() => setSelectedModule(null)}
           >
-            <div className="flex items-start space-x-4">
-              <div className={`w-16 h-16 bg-green-800 rounded-2xl flex items-center justify-center text-2xl text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+            <div className="flex items-start space-x-6">
+              <div className={`w-20 h-20 bg-gradient-to-br from-green-800 to-green-900 rounded-3xl flex items-center justify-center text-3xl text-white shadow-xl group-hover:scale-110 transition-transform duration-300 group-hover:shadow-2xl`}>
                 {module.icon}
               </div>
               
               <div className="flex-1 min-w-0">
-                <h3 className="text-xl font-bold text-green-800 mb-2 group-hover:text-green-900 transition-colors">
+                <h3 className="text-2xl font-bold text-green-800 mb-3 group-hover:text-green-900 transition-colors">
                   {module.title}
                 </h3>
-                <p className="text-black text-sm leading-relaxed mb-4">
+                <p className="text-black text-base leading-relaxed mb-6">
                   {module.description}
                 </p>
                 
-                <div className="flex items-center text-sm font-medium text-green-900 group-hover:text-green-800 transition-colors">
+                <div className="flex items-center text-base font-bold text-green-900 group-hover:text-green-800 transition-colors">
                   <span>Explore Module</span>
                   <svg 
-                    className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" 
+                    className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-200" 
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"

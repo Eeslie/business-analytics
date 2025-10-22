@@ -188,29 +188,35 @@ export default function StandardCustomReportsPage() {
         
 
         {/* This is your original page content */}
-        <div className="space-y-8 p-8 bg-slate-50 min-h-screen">
+        <div className="space-y-8 p-8 bg-white min-h-screen">
           {/* Header */}
-          <div className="text-center space-y-4">
-            <div className="inline-flex items-center space-x-2 px-4 py-2 bg-green-50 border border-green-200 rounded-full text-sm font-medium text-green-800">
-              <span className="w-2 h-2 bg-green-800 rounded-full"></span>
+          <div className="text-center space-y-6">
+            <div className="inline-flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-green-100 to-emerald-100 border-2 border-green-300 rounded-full text-sm font-bold text-green-800 shadow-lg">
+              <span className="w-3 h-3 bg-green-800 rounded-full"></span>
               <span>Report Generation</span>
             </div>
 
-            {/* --- FIX: I removed the <h1> from here since it's now in the header above --- */}
-            <h1 className="text-4xl font-bold tracking-tight text-green-800 md:hidden">
+            <h1 className="text-5xl font-bold tracking-tight text-green-800">
               Standard & Custom Reports
             </h1>
 
-            <p className="text-xl text-black/80 max-w-3xl mx-auto">
+            <p className="text-xl text-black max-w-4xl mx-auto leading-relaxed">
               Generate built-in reports across all modules with customizable layouts, filters, and scheduling options.
             </p>
           </div>
 
           {/* Error Display */}
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-800">
-              <strong>Error:</strong> {error}
-              <p className="text-sm mt-2">Make sure your backend server is running on port 3001</p>
+            <div className="bg-red-50 border-2 border-red-300 rounded-2xl p-6 text-red-900 shadow-lg">
+              <div className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                  <span className="text-red-600 text-lg">⚠️</span>
+                </div>
+                <div>
+                  <strong className="text-lg font-bold">Error:</strong> {error}
+                  <p className="text-sm mt-2 font-medium">Make sure your backend server is running on port 3001</p>
+                </div>
+              </div>
             </div>
           )}
 
@@ -218,13 +224,13 @@ export default function StandardCustomReportsPage() {
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-8">
               {/* Report Selection */}
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+              <div className="bg-white rounded-3xl border-2 border-green-200 shadow-xl p-8 hover:shadow-2xl transition-all duration-300">
                 {/* ... (rest of your unchanged code) ... */}
-                <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-10 h-10 bg-green-800 rounded-xl flex items-center justify-center">
-                    <span className="text-white text-lg">📊</span>
+                <div className="flex items-center space-x-4 mb-8">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-800 to-green-900 rounded-2xl flex items-center justify-center shadow-lg">
+                    <span className="text-white text-xl">📊</span>
                   </div>
-                  <h2 className="text-2xl font-bold text-green-800">Predefined Reports</h2>
+                  <h2 className="text-3xl font-bold text-green-800">Predefined Reports</h2>
                 </div>
                 <div className="grid sm:grid-cols-3 gap-4">
                   {PREDEFINED_REPORTS.map((report) => (
@@ -261,13 +267,13 @@ export default function StandardCustomReportsPage() {
               </div>
 
               {/* Filters */}
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+              <div className="bg-white rounded-3xl border-2 border-green-200 shadow-xl p-8 hover:shadow-2xl transition-all duration-300">
                 {/* ... (rest of your unchanged code) ... */}
-                <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-10 h-10 bg-green-800 rounded-xl flex items-center justify-center">
-                    <span className="text-white text-lg">⚙️</span>
+                <div className="flex items-center space-x-4 mb-8">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-800 to-green-900 rounded-2xl flex items-center justify-center shadow-lg">
+                    <span className="text-white text-xl">⚙️</span>
                   </div>
-                  <h2 className="text-2xl font-bold text-green-800">Customize Filters</h2>
+                  <h2 className="text-3xl font-bold text-green-800">Customize Filters</h2>
                 </div>
                 <div className="mb-6 p-4 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl">
                   <label className="block text-sm font-semibold text-green-900 mb-3 flex items-center">
@@ -355,13 +361,13 @@ export default function StandardCustomReportsPage() {
               </div>
 
               {/* Results */}
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+              <div className="bg-white rounded-3xl border-2 border-green-200 shadow-xl p-8 hover:shadow-2xl transition-all duration-300">
                 {/* ... (rest of your unchanged code) ... */}
-                <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-10 h-10 bg-green-800 rounded-xl flex items-center justify-center">
-                    <span className="text-white text-lg">📈</span>
+                <div className="flex items-center space-x-4 mb-8">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-800 to-green-900 rounded-2xl flex items-center justify-center shadow-lg">
+                    <span className="text-white text-xl">📈</span>
                   </div>
-                  <h2 className="text-2xl font-bold text-green-800">Report Results</h2>
+                  <h2 className="text-3xl font-bold text-green-800">Report Results</h2>
                 </div>
                 {runResult && runResult.reportId === "inventory-stock" && runResult.rows ? (
                   <div className="space-y-4">
@@ -443,13 +449,13 @@ export default function StandardCustomReportsPage() {
             <div className="space-y-8">
               
               {/* Export */}
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+              <div className="bg-white rounded-3xl border-2 border-green-200 shadow-xl p-6 hover:shadow-2xl transition-all duration-300">
                 {/* ... (rest of your unchanged code) ... */}
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-8 h-8 bg-green-800 rounded-lg flex items-center justify-center">
-                    <span className="text-white text-sm">📥</span>
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-10 h-10 bg-gradient-to-br from-green-800 to-green-900 rounded-2xl flex items-center justify-center shadow-lg">
+                    <span className="text-white text-lg">📥</span>
                   </div>
-                  <h3 className="text-lg font-semibold text-green-800">Export</h3>
+                  <h3 className="text-xl font-bold text-green-800">Export</h3>
                 </div>
                 <p className="text-black text-sm mb-4">Choose a format to download your report</p>
                 <div className="space-y-3">
@@ -475,13 +481,13 @@ export default function StandardCustomReportsPage() {
               </div>
 
               {/* Schedule */}
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+              <div className="bg-white rounded-3xl border-2 border-green-200 shadow-xl p-6 hover:shadow-2xl transition-all duration-300">
                 {/* ... (rest of your unchanged code) ... */}
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-8 h-8 bg-green-800 rounded-lg flex items-center justify-center">
-                    <span className="text-white text-sm">⏰</span>
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-10 h-10 bg-gradient-to-br from-green-800 to-green-900 rounded-2xl flex items-center justify-center shadow-lg">
+                    <span className="text-white text-lg">⏰</span>
                   </div>
-                  <h3 className="text-lg font-semibold text-green-800">Schedule</h3>
+                  <h3 className="text-xl font-bold text-green-800">Schedule</h3>
                 </div>
                 <div className="space-y-4">
                   <div>

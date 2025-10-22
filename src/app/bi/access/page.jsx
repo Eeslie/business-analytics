@@ -78,17 +78,17 @@ export default function AccessSecurityReportsPage() {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="text-center space-y-4">
-        <div className="inline-flex items-center space-x-2 px-4 py-2 bg-green-50 border border-green-200 rounded-full text-sm font-medium text-green-800">
-          <span className="w-2 h-2 bg-green-800 rounded-full"></span>
-          <span>Access & Security</span>
+      <div className="text-center space-y-6">
+        <div className="inline-flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-green-100 to-emerald-100 border-2 border-green-300 rounded-full text-sm font-bold text-green-800 shadow-lg">
+          <span className="w-3 h-3 bg-green-800 rounded-full"></span>
+          <span>Access & Security Management</span>
         </div>
         
-        <h1 className="text-4xl font-bold tracking-tight text-green-800">
+        <h1 className="text-5xl font-bold tracking-tight text-green-800">
           Role-Based Access & Security
         </h1>
         
-        <p className="text-xl text-black/80 max-w-3xl mx-auto">
+        <p className="text-xl text-black max-w-4xl mx-auto leading-relaxed">
           Control who can view, edit, or export sensitive reports using roles and departmental scopes. 
           All actions are logged to support privacy and integrity.
         </p>
@@ -98,12 +98,12 @@ export default function AccessSecurityReportsPage() {
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-8">
           {/* Role Configuration */}
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-green-800 rounded-xl flex items-center justify-center">
-                <span className="text-white text-lg">👥</span>
+          <div className="bg-white rounded-3xl border-2 border-green-200 shadow-xl p-8 hover:shadow-2xl transition-all duration-300">
+            <div className="flex items-center space-x-4 mb-8">
+              <div className="w-12 h-12 bg-gradient-to-br from-green-800 to-green-900 rounded-2xl flex items-center justify-center shadow-lg">
+                <span className="text-white text-xl">👥</span>
               </div>
-              <h2 className="text-2xl font-bold text-green-800">Roles & Scopes</h2>
+              <h2 className="text-3xl font-bold text-green-800">Roles & Scopes</h2>
             </div>
 
             <div className="grid sm:grid-cols-3 gap-6">
