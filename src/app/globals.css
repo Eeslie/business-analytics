@@ -1,22 +1,49 @@
 @import "tailwindcss";
 
+p, h1, h2, h3, h4, h5, h6, a, li, span, div {
+  color: #000;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #000000; /* normal text: black */
   --primary: #166534; /* green-800 */
+  --primary-foreground: #ffffff;
   --primary-dark: #14532d; /* green-900 */
   --secondary: #7c2d12; /* orange-900 (deep) */
+  --secondary-foreground: #ffffff;
   --secondary-dark: #14532d; /* emphasis alt: green-900 */
   --accent: #f0fdf4; /* light emerald tint */
+  --accent-foreground: #000000;
   --muted: #f8fafc;
+  --muted-foreground: #64748b;
   --border: #e2e8f0;
   --border-light: #f1f5f9;
   --text-muted: #64748b;
   --danger: #7f1d1d; /* red-900 for delete/warnings */
+  --destructive: #7f1d1d;
+  --destructive-foreground: #ffffff;
+  --ring: #166534;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --input: #e2e8f0;
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  /* Sidebar specific variables */
+  --sidebar-background: #ffffff;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #166534;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f0fdf4;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #166534;
+  --radius: 0.5rem;
 }
 
 @theme inline {
@@ -31,15 +58,38 @@
     --background: #0a0a0a;
     --foreground: #ededed;
     --primary: #166534; /* keep brand green for focus */
+    --primary-foreground: #ffffff;
     --primary-dark: #14532d;
     --secondary: #7c2d12; /* orange-900 */
+    --secondary-foreground: #ffffff;
     --secondary-dark: #14532d; /* green-900 */
     --accent: #064e3b;
+    --accent-foreground: #ededed;
     --muted: #1e293b;
+    --muted-foreground: #94a3b8;
     --border: #334155;
     --border-light: #475569;
     --text-muted: #94a3b8;
     --danger: #7f1d1d;
+    --destructive: #7f1d1d;
+    --destructive-foreground: #ffffff;
+    --ring: #166534;
+    --popover: #0a0a0a;
+    --popover-foreground: #ededed;
+    --card: #0a0a0a;
+    --card-foreground: #ededed;
+    --input: #334155;
+    
+    /* Sidebar specific variables for dark mode */
+    --sidebar-background: #0a0a0a;
+    --sidebar-foreground: #ededed;
+    --sidebar-primary: #166534;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #064e3b;
+    --sidebar-accent-foreground: #ededed;
+    --sidebar-border: #334155;
+    --sidebar-ring: #166534;
+    --radius: 0.5rem;
   }
 }
 
