@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { exportToPDF, exportToExcel, exportToCSV } from "../../../utils/exportUtils";
 
 const PREDEFINED_REPORTS = [
   { id: "sales-summary", name: "Sales Summary" },
@@ -96,15 +97,63 @@ export default function StandardCustomReportsPage() {
   }
 
   async function handleExport(kind) {
-    setExporting(true);
-    await new Promise((r) => setTimeout(r, 600));
-    setExporting(false);
-    alert(`Exported ${selectedReportName} as ${kind.toUpperCase()}`);
+    if (!runResult) {
+      alert("Please generate a report first");
+      return;
+    }
+    try {
+      setExporting(true);
+      const payload = {
+        reportId: runResult.reportId,
+        dateFrom: runResult.dateFrom,
+        dateTo: runResult.dateTo,
+        department: runResult.department,
+        region: runResult.region,
+        columns: runResult.columns,
+        generatedAt: runResult.generatedAt,
+        rows: runResult.rows,
+      };
+      if (kind === "pdf") exportToPDF(payload);
+      else if (kind === "xlsx") exportToExcel(payload);
+      else if (kind === "csv") exportToCSV(payload);
+    } catch (err) {
+      console.error("Export failed", err);
+      alert(`Export failed: ${err.message}`);
+    } finally {
+      setExporting(false);
+    }
   }
 
-  function saveSchedule() {
-    setScheduleSaved(true);
-    setTimeout(() => setScheduleSaved(false), 1500);
+  async function saveSchedule() {
+    try {
+      if (!schedule.email) {
+        alert("Please enter an email address");
+        return;
+      }
+      const body = {
+        id: `${selectedReportId}:${schedule.email}`,
+        reportId: selectedReportId,
+        dateFrom,
+        dateTo,
+        department,
+        region,
+        email: schedule.email,
+        frequency: schedule.frequency,
+        time: schedule.time,
+      };
+      const res = await fetch("/api/schedule-report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "Failed to schedule");
+      setScheduleSaved(true);
+      setTimeout(() => setScheduleSaved(false), 1500);
+    } catch (err) {
+      console.error(err);
+      alert(`Failed to save schedule: ${err.message}`);
+    }
   }
 
   return (
