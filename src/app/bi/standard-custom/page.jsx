@@ -305,23 +305,6 @@ export default function StandardCustomReportsPage() {
               </div>
             </div>
 
-            <div className="mt-6">
-              <label className="block text-sm font-medium text-black mb-3">Include Columns</label>
-              <div className="flex flex-wrap gap-4">
-                {Object.keys(includeColumns).map((key) => (
-                  <label key={key} className="flex items-center space-x-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={includeColumns[key]}
-                      onChange={(e) => setIncludeColumns({ ...includeColumns, [key]: e.target.checked })}
-                      className="w-4 h-4 text-green-600 border-slate-300 rounded focus:ring-green-500"
-                    />
-                    <span className="text-sm font-medium text-black capitalize">{key}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
             <div className="mt-8">
               <button
                 onClick={runReport}
