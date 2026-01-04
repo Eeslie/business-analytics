@@ -1,9 +1,9 @@
 "use client"
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ChevronDown, ChevronRight, User, LogOut } from "lucide-react";
 import { Sidebar, SidebarTrigger, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, useSidebar } from "./sidebar";
 import { employeeDashboard } from "../../lib/utils/page-route";
 import { useAuth } from "../../hooks/use-auth";
@@ -12,7 +12,29 @@ export function AppSidebar() {
     const { claims, loading } = useAuth();
     const { open } = useSidebar();
     const pathName = usePathname();
+    const router = useRouter();
     const [expandedItems, setExpandedItems] = useState<string[]>([]);
+    const [user, setUser] = useState(null);
+    
+    useEffect(() => {
+        // Get user from localStorage
+        if (typeof window !== "undefined") {
+            const userStr = localStorage.getItem("auth_user");
+            if (userStr) {
+                try {
+                    setUser(JSON.parse(userStr));
+                } catch (e) {
+                    console.error("Error parsing user data:", e);
+                }
+            }
+        }
+    }, []);
+    
+    const handleLogout = () => {
+        localStorage.removeItem("auth_user");
+        localStorage.removeItem("auth_token");
+        router.push("/");
+    };
     
     if (pathName === '/auth') return null;
     let route: any[] = employeeDashboard;
@@ -40,7 +62,7 @@ export function AppSidebar() {
                 className="rounded-full shadow-6xl !bg-black !text-white hover:!bg-gray-800 absolute z-50 right-[-28px] top-[47%] -translate-x-1/2 -translate-y-1/2 [&_svg]:text-white"
             />
             <SidebarContent 
-                className={`rounded-md bg-gradient-to-b from-green-50 to-emerald-50 border-r-green-200 border-0`}
+                className={`rounded-md bg-gradient-to-b from-green-50 to-emerald-50 border-r-green-200 border-0 flex flex-col`}
             >
                 {/* Logo Section */}
                 <div className="flex flex-col items-center py-6 px-4">
@@ -121,6 +143,31 @@ export function AppSidebar() {
                         </div>
                     ))}
                 </SidebarMenu>
+                
+                {/* User Info & Logout at Bottom */}
+                {user && (
+                    <div className="mt-auto border-t border-green-200 pt-4 pb-4 px-4">
+                        <div className={`flex ${open ? 'flex-col space-y-3' : 'flex-col items-center space-y-2'}`}>
+                            <div className={`flex items-center ${open ? 'space-x-2' : 'flex-col space-y-1'}`}>
+                                <User className={`${open ? 'w-4 h-4' : 'w-5 h-5'} text-[#00704A]`} />
+                                {open && (
+                                    <div className="flex-1 min-w-0">
+                                        <div className="text-sm font-medium text-black truncate">{user.email}</div>
+                                        <div className="text-xs text-gray-600 capitalize">{user.role}</div>
+                                    </div>
+                                )}
+                            </div>
+                            <button
+                                onClick={handleLogout}
+                                className={`flex items-center ${open ? 'justify-start space-x-2' : 'justify-center'} text-red-600 hover:text-red-700 transition-colors text-sm font-medium`}
+                                title="Logout"
+                            >
+                                <LogOut className={`${open ? 'w-4 h-4' : 'w-5 h-5'}`} />
+                                {open && <span>[→ Logout]</span>}
+                            </button>
+                        </div>
+                    </div>
+                )}
             </SidebarContent>
         </Sidebar>
     )

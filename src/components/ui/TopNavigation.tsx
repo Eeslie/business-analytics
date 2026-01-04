@@ -57,23 +57,29 @@ export function TopNavigation() {
 
   return (
     <header className="bg-white border-b border-green-200 shadow-none sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo & Brand */}
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-green-800 to-green-900 rounded-xl flex items-center justify-center shadow-lg">
-                <Coffee className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-green-800">Starbucks BI</h1>
-                <p className="text-xs text-black/60">Business Intelligence</p>
-              </div>
+      <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center h-16">
+          {/* Logo & Brand - Left Side */}
+          <div className="flex items-center space-x-3 flex-shrink-0">
+            <div className="w-10 h-10 rounded-full bg-[#00704A] flex items-center justify-center">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 4C9 4 6 6 6 9C6 12 9 14 12 14C15 14 18 12 18 9C18 6 15 4 12 4ZM12 16C8 16 4 18 4 22H20C20 18 16 16 12 16Z"
+                  fill="white"
+                />
+              </svg>
             </div>
+            <h1 className="text-lg font-semibold text-[#00704A] whitespace-nowrap">Starbucks BI Business Intelligence</h1>
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1">
+          {/* Desktop Navigation - Center */}
+          <nav className="hidden md:flex items-center space-x-2 flex-1 justify-center mx-4">
             {NAV_ITEMS.map((item) => {
               const isActive = pathname === item.href;
               const Icon = item.icon;
@@ -82,26 +88,19 @@ export function TopNavigation() {
                 <Link
                   key={item.id}
                   href={item.href}
-                  className={`group relative px-4 py-2 rounded-lg transition-all duration-200 ${
+                  className={`group relative px-4 py-2 rounded-lg transition-all duration-200 flex items-center space-x-2 ${
                     isActive
-                      ? "bg-green-800 text-white shadow-md"
-                      : "text-black hover:bg-green-50 hover:text-green-800"
+                      ? "bg-[#00704A] text-white"
+                      : "text-black hover:bg-green-50 hover:text-[#00704A]"
                   }`}
                 >
-                  <div className="flex items-center space-x-2">
-                    <Icon className="w-4 h-4" />
-                    <span className={`font-medium ${isActive ? "text-white" : "text-black"}`}>{item.title}</span>
-                  </div>
-                  
-                  {/* Tooltip */}
-                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gradient-to-r from-green-700 to-emerald-700 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap shadow-lg">
-                    {item.description}
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-green-700"></div>
-                  </div>
+                  <Icon className="w-4 h-4" />
+                  <span className="font-medium text-sm">{item.title}</span>
                 </Link>
               );
             })}
           </nav>
+
 
           {/* Mobile Menu Button */}
           <button
@@ -143,6 +142,7 @@ export function TopNavigation() {
                   </Link>
                 );
               })}
+              
             </nav>
           </div>
         )}
