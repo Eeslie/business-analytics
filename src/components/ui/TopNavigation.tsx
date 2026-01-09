@@ -6,7 +6,6 @@ import {
   BarChart3, 
   Zap, 
   Shield, 
-  Lock, 
   Coffee,
   Menu,
   X
@@ -41,13 +40,6 @@ const NAV_ITEMS = [
     href: "/bi/compliance",
     icon: Shield,
     description: "Regulatory Reports"
-  },
-  {
-    id: "access",
-    title: "Access & Security",
-    href: "/bi/access",
-    icon: Lock,
-    description: "Role Management"
   }
 ];
 

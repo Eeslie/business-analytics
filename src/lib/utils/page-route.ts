@@ -1,4 +1,4 @@
-import { HandCoins, ShoppingBasket, BarChart3, Zap, Shield, Lock } from "lucide-react";
+import { HandCoins, ShoppingBasket, BarChart3, Zap, Shield } from "lucide-react";
 
 export const employeeDashboard = [
     { 
@@ -30,11 +30,6 @@ export const employeeDashboard = [
                 title: "Compliance",
                 icon: Shield,
                 href: '/bi/compliance'
-            },
-            {
-                title: "Access & Security",
-                icon: Lock,
-                href: '/bi/access'
             }
         ]
     }

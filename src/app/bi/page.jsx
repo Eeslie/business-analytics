@@ -33,16 +33,6 @@ const MODULES = [
     color: "from-purple-500 to-pink-500",
     bgColor: "from-purple-50 to-pink-50",
     borderColor: "border-purple-200"
-  },
-  {
-    id: "access",
-    title: "Access & Security",
-    description: "Manage user permissions and security settings",
-    icon: "🔐",
-    href: "/bi/access",
-    color: "from-orange-500 to-red-500",
-    bgColor: "from-orange-50 to-red-50",
-    borderColor: "border-orange-200"
   }
 ];
 
