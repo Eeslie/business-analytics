@@ -192,7 +192,7 @@ export default function ComplianceReportsPage() {
       alternateRowStyles: { 
         fillColor: [240, 253, 244]
       },
-      margin: { left: 20, right: 20, top: 10 },
+      margin: { left: 15, right: 20, top: 15 },
       styles: { 
         cellPadding: 5,
         overflow: 'linebreak',
@@ -200,12 +200,12 @@ export default function ComplianceReportsPage() {
         lineColor: [200, 200, 200]
       },
       columnStyles: {
-        0: { cellWidth: 70, cellPadding: { top: 6, bottom: 6, left: 5, right: 5 } },
+        0: { cellWidth: 50, cellPadding: { top: 6, bottom: 6, left: 5, right: 5 } },
         1: { cellWidth: 60, cellPadding: { top: 6, bottom: 6, left: 5, right: 5 } },
-        2: { cellWidth: 50, halign: 'right', cellPadding: { top: 6, bottom: 6, left: 5, right: 5 } },
+        2: { cellWidth: 40, halign: 'left', cellPadding: { top: 6, bottom: 6, left: 5, right: 5 } },
         3: { cellWidth: 40, halign: 'center', cellPadding: { top: 6, bottom: 6, left: 5, right: 5 } },
         4: { cellWidth: 40, cellPadding: { top: 6, bottom: 6, left: 5, right: 5 } },
-        5: { cellWidth: 50, cellPadding: { top: 6, bottom: 6, left: 5, right: 5 } }
+        5: { cellWidth: 40, cellPadding: { top: 6, bottom: 6, left: 5, right: 5 } }
       }
     });
 
@@ -320,7 +320,7 @@ export default function ComplianceReportsPage() {
       },
       columnStyles: {
         0: { cellWidth: 50 },
-        1: { cellWidth: 40, halign: 'right' },
+        1: { cellWidth: 40, halign: 'left' },
         2: { cellWidth: 35, halign: 'center' },
         3: { cellWidth: 45 }
       }
@@ -377,7 +377,7 @@ export default function ComplianceReportsPage() {
         },
         columnStyles: {
           0: { cellWidth: 30 },
-          1: { cellWidth: 35, halign: 'right' },
+          1: { cellWidth: 35, halign: 'left' },
           2: { cellWidth: 30, halign: 'center' },
           3: { cellWidth: 40 },
           4: { cellWidth: 40 }
@@ -444,6 +444,14 @@ export default function ComplianceReportsPage() {
     });
 
     const worksheet = XLSX.utils.aoa_to_sheet(excelData);
+    worksheet['!cols'] = [
+      { wch: 22 }, // Timestamp
+      { wch: 40 }, // Order ID
+      { wch: 18 }, // Amount
+      { wch: 16 }, // Status
+      { wch: 20 }, // Invoice #
+      { wch: 20 }  // Invoice Date
+    ];
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Audit Trail');
     XLSX.writeFile(workbook, `Audit_Trail_${new Date().toISOString().split('T')[0]}.xlsx`);
     appendAudit(`Exported Audit Trail as Excel`);

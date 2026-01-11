@@ -305,7 +305,7 @@ export default function RealTimeReportsPage() {
   }, [kpiChanges, allReceivables, reportData.orders, kpis.revenue, ageSec]);
 
   function exportRealTimeToPDF() {
-    const doc = new jsPDF();
+    const doc = new jsPDF('landscape');
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
     let yPosition = 20;
@@ -380,18 +380,18 @@ export default function RealTimeReportsPage() {
         alternateRowStyles: { 
           fillColor: [240, 253, 244] // green-50
         },
-        margin: { left: 20, right: 20 },
+        margin: { left: 55, right: 20 },
         styles: { 
           cellPadding: 4,
           overflow: 'linebreak',
           cellWidth: 'auto',
-          halign: 'left'
+          halign: 'center'
         },
         columnStyles: {
-          0: { cellWidth: 45, halign: 'left' }, // Order ID
-          1: { cellWidth: 45, halign: 'right' }, // Total Amount
+          0: { cellWidth: 45, halign: 'center' }, // Order ID
+          1: { cellWidth: 45, halign: 'center' }, // Total Amount
           2: { cellWidth: 35, halign: 'center' }, // Status
-          3: { cellWidth: 60, halign: 'left' } // Created At
+          3: { cellWidth: 60, halign: 'center' } // Created At
         }
       });
 
@@ -441,30 +441,30 @@ export default function RealTimeReportsPage() {
         alternateRowStyles: { 
           fillColor: [240, 253, 244] // green-50
         },
-        margin: { left: 20, right: 20 },
+        margin: { left: 40, right: 20 },
         styles: { 
           cellPadding: 4,
           overflow: 'linebreak',
           cellWidth: 'auto',
-          halign: 'left'
+          halign: 'center'
         },
         columnStyles: {
-          0: { cellWidth: 30, halign: 'left' }, // Invoice #
-          1: { cellWidth: 40, halign: 'right' }, // Amount
-          2: { cellWidth: 30, halign: 'center' }, // Status
-          3: { cellWidth: 40, halign: 'left' }, // Invoice Date
-          4: { cellWidth: 40, halign: 'left' } // Due Date
+          0: { cellWidth: 40, halign: 'center' }, // Invoice #
+          1: { cellWidth: 50, halign: 'center' }, // Amount
+          2: { cellWidth: 40, halign: 'center' }, // Status
+          3: { cellWidth: 40, halign: 'center' }, // Invoice Date
+          4: { cellWidth: 40, halign: 'center' } // Due Date
         }
       });
 
-      yPosition = doc.lastAutoTable.finalY + 15;
+      yPosition = doc.lastAutoTable.finalY + 200;
     }
 
     // All Orders Table
     if (allOrders.length > 0) {
       // Check if we need a new page
       if (yPosition > pageHeight - 60) {
-        doc.addPage();
+        doc.addPage('landscape');
         yPosition = 20;
       }
 
@@ -516,30 +516,30 @@ export default function RealTimeReportsPage() {
           textColor: [255, 255, 255],
           fontStyle: 'bold',
           fontSize: 10,
-          cellPadding: 4
+          cellPadding: 3
         },
         bodyStyles: { 
           fontSize: 8,
           textColor: [0, 0, 0],
-          cellPadding: 4
+          cellPadding: 3
         },
         alternateRowStyles: { 
           fillColor: [240, 253, 244] // green-50
         },
-        margin: { left: 20, right: 20 },
+        margin: { left: 10, right: 20 },
         styles: { 
-          cellPadding: 4,
+          cellPadding: 3,
           overflow: 'linebreak',
           cellWidth: 'auto',
           halign: 'left'
         },
         columnStyles: {
           0: { cellWidth: 40, halign: 'left' }, // Order ID
-          1: { cellWidth: 35, halign: 'right' }, // Order Amount
-          2: { cellWidth: 25, halign: 'center' }, // Status
+          1: { cellWidth: 35, halign: 'left' }, // Order Amount
+          2: { cellWidth: 25, halign: 'left' }, // Status
           3: { cellWidth: 45, halign: 'left' }, // Created At
-          4: { cellWidth: 30, halign: 'left' }, // Invoice #
-          5: { cellWidth: 35, halign: 'right' }, // Invoice Amount
+          4: { cellWidth: 20, halign: 'left' }, // Invoice #
+          5: { cellWidth: 35, halign: 'left' }, // Invoice Amount
           6: { cellWidth: 35, halign: 'left' }, // Invoice Date
           7: { cellWidth: 35, halign: 'left' } // Due Date
         },

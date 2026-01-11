@@ -33,7 +33,7 @@ const getReportTitle = (reportId) => {
 export const exportToPDF = (reportData) => {
   const { reportId, dateFrom, dateTo, generatedAt, rows, summary } = reportData;
   
-  const doc = new jsPDF();
+  const doc = new jsPDF('landscape');
   const pageWidth = doc.internal.pageSize.getWidth();
   
   // Title
@@ -76,18 +76,23 @@ export const exportToPDF = (reportData) => {
       startY: yPosition,
       head: [['Metric', 'Value']],
       body: summaryData,
-      styles: { fontSize: 10 },
+      styles: { fontSize: 13 },
       headStyles: { fillColor: [22, 101, 52], textColor: [255, 255, 255] },
       alternateRowStyles: { fillColor: [248, 250, 252] },
       margin: { left: 20, right: 20 }
     });
     
     // Add detailed profit & loss table if rows are available
-    if (rows && rows.length > 0) {
-      const finalY = doc.lastAutoTable.finalY || yPosition + 50;
+    if (rows && rows.length > 0) {  
+      // Start Profit & Loss Detail on a new page
+      doc.addPage();
+
+      let yPosition = 20;
+
       doc.setFontSize(14);
       doc.setFont('helvetica', 'bold');
-      doc.text('Profit & Loss Detail', 20, finalY + 15);
+      doc.text('Profit & Loss Detail', 20, yPosition);
+      yPosition += 5;
       
       const detailHeaders = [['Order ID', 'Order Amount', 'Status', 'Paid Amount (Profit)', 'Unpaid Amount (Loss)', 'Created At']];
       const detailData = rows.map(order => {
@@ -112,19 +117,19 @@ export const exportToPDF = (reportData) => {
       });
       
       autoTable(doc, {
-        startY: finalY + 25,
+        startY: yPosition + 10,
         head: detailHeaders,
         body: detailData,
-        styles: { fontSize: 7 },
+        styles: { fontSize: 10 },
         headStyles: { fillColor: [22, 101, 52], textColor: [255, 255, 255], fontSize: 8 },
         alternateRowStyles: { fillColor: [248, 250, 252] },
         margin: { left: 20, right: 20 },
         columnStyles: {
           0: { cellWidth: 50 },
-          1: { cellWidth: 35, halign: 'right' },
+          1: { cellWidth: 35},
           2: { cellWidth: 30 },
-          3: { cellWidth: 40, halign: 'right' },
-          4: { cellWidth: 40, halign: 'right' },
+          3: { cellWidth: 40},
+          4: { cellWidth: 40},
           5: { cellWidth: 50 }
         }
       });
@@ -309,9 +314,9 @@ export const exportToExcel = (reportData) => {
   if (reportId === 'inventory-stock') {
     colWidths.push({ wch: 25 }, { wch: 15 }, { wch: 10 }, { wch: 10 }, { wch: 20 }, { wch: 20 });
   } else if (reportId === 'sales-summary') {
-    colWidths.push({ wch: 30 }, { wch: 15 }, { wch: 12 }, { wch: 25 }, { wch: 12 });
+    colWidths.push({ wch: 35 }, { wch: 15 }, { wch: 12 }, { wch: 25 }, { wch: 12 });
   } else if (reportId === 'profit-loss') {
-    colWidths.push({ wch: 30 }, { wch: 20 });
+    colWidths.push({ wch: 35 }, { wch: 20 });
   } else {
     colWidths.push({ wch: 20 }, { wch: 30 });
   }
